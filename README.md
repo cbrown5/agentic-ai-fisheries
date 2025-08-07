@@ -1,0 +1,18 @@
+# Automating fisheries modelling with agentic AI
+
+Christopher J. Brown, Richard Takyi, ....
+
+## Summary
+
+Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) VB parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) spawner per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.  
+
+## Plan 
+
+Look at three models:
+VB parameter estimation
+GLM of fish habitat
+VPA/or SPR
+
+
+SORT OUT HTIS TEXT
+So a goal is to see if identity I like to do some common fisheries analysis so to do this project, we're going to use cords on at four as it's pretty good with HDKI Rode different fisheries problems, replicate multiple times. There's those are the same for the prompt at least 10 times. This is a little replicaability there. Then we will have a Rubik that will assess the final reports against and we'll do this for two promptting strategies. One will be default using orchestrate mode and a second will be orstructive custom system props that and all right and this is an MDM test so we're not trying to be ahensive test ofies, but we'll just throw every best practice we going out at the problem to see if it works. And then we set as much as possible, set everything to, to order accept it just runs offously for things that we decisions of needs to be made soon. I guess I'll have to go and make those decisions and record what the decisions were. Upcom, will measure is the AI weed to generate our report, to study his findings. We'll mark up some r. So it's a multi up. There'll be a lial accuracy of explanation. So what? We were also... count number of tokens in cost, is number of problems used else we can get out of. It's this thing. I' just suggests performance. Yeah, it's. I guess point to my just is that it do these typs technalysis. So the first anal anal. I'imation. So we used and it' direct. I think that's using size and H data. I just don't have ne aggression justimate it. So we'll see if we can do that... It's that's chopping out, it looks a slight different data, so it's nothing to say. See if you can.... In terms of the aggressive. It's. Well covered. over lunds. and one. Spawned her routinis. So I have to life practice and so on as her for. See how it goes.. Yeah, that one needs to understand how. Just see if you can do it. We'll use two exchents. default. I't long with default will include things. Top the documentation. Best day documentation. In the boldus of the use that. I use my approach when I recommended. problems. I's what we want to do, see if we can follow that and get time. Now, all will take the system props as well. Pro specific and force to use those points. And. Yeah, one try tests.
