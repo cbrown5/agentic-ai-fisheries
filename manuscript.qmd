@@ -1,0 +1,60 @@
+---
+title: "Climate change and fishing pressure reduce predictability of species abundance change"
+bibliography: references.bib
+# csl: oneearth.csl
+editor: visual
+format: docx
+# format:
+  # docx:
+    # reference-doc: template.docx
+---
+
+
+## Summary
+
+[re-write this as its for expert users as well. ]
+Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) von-Bertalanffy parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) yield per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.  
+
+## Introduction
+
+Fisheries modelling. Agentic AI, what it is, what it can do. 
+
+Problem: Fisheries modelling can be time-consuming and required much expertise. AI agents could speed this up and increase access to tools. But can it generate reliable results? 
+
+What came before. Limited but increasing number of tests in the R language. LLMs can create bio-informatics code that executes, but not neccessarily code that works accurately [@jansen2025leveraging]. Perform better if they can self correct. For stats, LLMs can help with stats, and do better with data and reference material. Agents could solve this problem, so we need tests of the credibility of their outputs. 
+
+Here we test whether an AI agent can complete three fisheries tasks. We sought 
+
+Recent studies have shown that they are sub-optimal in a conversation setting, though users tend to use them this way and underspecify what they want intially. Agents
+
+
+
+## Tips for writing the initial prompt
+
+
+- fully specify everyting, including testing for confounding
+- put rmd is root directory to aid with rendering
+- specifcy how to use Rscript 
+
+
+## Test case notes
+
+### GLM notes 
+
+Generally didn't do scale transform on predictions
+Mixed results as to whether it did count based residual diagnostics or not
+run 3 did a 3d plot! 
+
+run5 much more terse than other runs, provided much less interpretation. Shows in the price. 
+run7 minor error in figure axes labels, didn't note that it was log abundance
+
+### VBF case notes
+
+reference: https://derekogle.com/fishR/2019-12-31-ggplot-vonB-fitPlot-1
+
+## References
+
+https://arxiv.org/pdf/2505.06120
+
+MQMF
+https://haddonm.github.io/URMQMF/static-models.html#growth

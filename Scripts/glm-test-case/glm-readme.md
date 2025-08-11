@@ -22,15 +22,14 @@ We will use generalized linear models to analyze the relationship between topa a
 Topa abundance is probably over-dispersed, so we we will need to use a negative binomial family. We will use R and the MASS package: 
 
 ```
-library(MASS)
-glm.nb(pres.topa ~ CB_cover*soft_cover, data = fish_coral_cover_sites)
+MASS::glm.nb(pres.topa ~ CB_cover*soft_cover, data = fish_coral_cover_sites)
 ```
 
 To obtain a final model we should model selection, starting with a full model then working towards simpler models. We will use likelihood ratio tests to compare models. For example the first test would be: 
 
 ```
-m1 <- glm.nb(pres.topa ~ CB_cover*soft_cover, data = fish_coral_cover_sites)
-m2 <- glm.nb(pres.topa ~ CB_cover + soft_cover, data = fish_coral_cover_sites)
+m1 <- MASS::glm.nb(pres.topa ~ CB_cover*soft_cover, data = fish_coral_cover_sites)
+m2 <- MASS::glm.nb(pres.topa ~ CB_cover + soft_cover, data = fish_coral_cover_sites)
 anova(m1, m2, test = "Chisq")
 ```
 
@@ -45,7 +44,9 @@ Write a diagnosticis report in an Rmarkdown file.
 
 The agent will produce a report that answers the above questions. The report will include a description of the data, the methods used for analysis, and the results of the analysis. The code will be written as R scripts. 
 
-Each script should be modular and save intermediate results as datafiles and figures. The final report should be written in markdown format and should import png files for the figures. The report should be written in Rmarkdown format and should include the following sections:
+Each script should be modular and save intermediate results as datafiles and figures. The final report must be written in Rmarkdown format. The figures will be imported using markdown syntax, e.g. `![](outputs/plots/figure1.png)`. Don't use R code for figures in the markdown report. 
+Summary tables should be imported from .csv files and created using the `knitr::kable()` function in Rmarkdown. 
+The report must include the following sections:
 
 - Study aims
 - Data methodology
@@ -53,29 +54,31 @@ Each script should be modular and save intermediate results as datafiles and fig
 - Results
   - Model selection and verification
   - Model fit statistics
-  - Plots of predicted fish abundance based on the final model, with confidence intervals
+  - Plots of predicted fish abundance (log-link scale) based on the final model, with confidence intervals
   - Relevant statistics (r2, p-values, etc.)
 
-The agent is also be required to produce diagnostic plots and a separate report on the model diagnostics. 
-
+The agent is must produce diagnostic plots and a separate report on the model diagnostics. 
 
 ### Tech context
 - We will use the R program
 - tidyverse packages for data manipulation
 - ggplot2 for data visualization
 - use `theme_set(theme_classic())` for plots
+- Use the `MASS` package for the negative binomial model, however don't load it globally with `library(MASS)`, instead use `MASS::glm.nb()` to avoid namespace conflicts.
+- Use `visreg` package for plotting model effects and confidence intervals, e.g. `visreg::visreg(m2, "CB_cover", "soft_cover", gg=TRUE, scale = 'linear')`
 
 Keep your scripts short and modular to facilitate debugging. Don't complete all of the steps below in one script. Finish scripts where it makes sense and save intermediate datasets. 
 
-When using Rscript to run R scripts in terminal put quotes around the file, e.g. `Rscript "1_data-input.R"`
+When using Rscript to run R scripts in terminal put quotes around the file, e.g. `Rscript "1_model.R"`
 
 ### Workflow 
 
 1. Create a todo list and keep track of progress
-2. Model selection and verification, produce diagnostic plots
-3. Model diagnostic plots markdown report 
-4. Create plots of predictions from the final model
-5. Write report in markdown format
+2. Data processing including standardizing coral variables by number of points
+3. Model selection and verification, produce diagnostic plots
+4. Model diagnostic plots markdown report 
+5. Create plots of predictions from the final model
+6. Write report in markdown format
 
 ### Directory structure 
 
@@ -87,15 +90,16 @@ glm-test-case/
 ├── initial-prompt.md       # Initial project prompt and requirements
 ├── outputs/                # Generated output files
 │   └── plots/              # Diagnostic plots and visualization outputs (PNG files)
-├── reports/                # Analysis reports and documentation
 └── scripts/                # R scripts for data analysis and modeling
 ```
 
+Put the .rmd reports in the top-level directory. 
+
 ## Meta data 
 
-### fish-coral-cover-sites.csv
+### fish-coral.csv
 
-![Site level covariates](https://raw.githubusercontent.com/cbrown5/example-ecological-data/refs/heads/main/data/benthic-reefs-and-fish/fish-coral-cover-sites.csv)
+Location: `data/fish-coral.csv`
 
 Variables
 - site: Unique site IDs, use to join to benthic_cover.csv
