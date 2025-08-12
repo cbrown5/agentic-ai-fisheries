@@ -27,7 +27,7 @@ Fisheries modelling can take years of specialist training to learn. Agentic AI s
 
 Look at three models:
 VB parameter estimation - Testing. 
-I have made a 'simple' and 'full' version. For now use the 'simple' version. If this works well enough, don't bother with the full version. Could do anotehr v
+I have made a 'simple' and 'full' version. For now using the 'simple' version. Could do another one where I attach FSA instructions to the prompt.
 Then re-run without code 
 GLM of fish habitat. Done, mark Kimi K2 results
 
