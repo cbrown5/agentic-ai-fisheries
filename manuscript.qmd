@@ -21,21 +21,67 @@ Fisheries modelling. Agentic AI, what it is, what it can do.
 
 Problem: Fisheries modelling can be time-consuming and required much expertise. AI agents could speed this up and increase access to tools. But can it generate reliable results? 
 
-What came before. Limited but increasing number of tests in the R language. LLMs can create bio-informatics code that executes, but not neccessarily code that works accurately [@jansen2025leveraging]. Perform better if they can self correct. For stats, LLMs can help with stats, and do better with data and reference material. Agents could solve this problem, so we need tests of the credibility of their outputs. 
+What came before. Limited but increasing number of tests in the R language. LLMs can create bio-informatics code that executes, but not neccessarily code that works accurately [@jansen2025leveraging]. Perform better if they can self correct. For stats, LLMs can help with stats, and do better with data and reference material [@zhu2024large]. Past tests have tended to focus on the analysis of large numbers of simple problems. However, fisheries modelling is complex and involves multiple interacting steps in its workflows. AI Agents could have the capacity to tackle these problems, becuase of their ability to self correct and update their analysis strategy based on previous results. Agents could solve this problem, so we need tests of the credibility of their outputs . 
 
-Here we test whether an AI agent can complete three fisheries tasks. We sought 
+Here we test how accurately AI agents can complete three fisheries tasks. We ran the AI agents fully autonomously, with only a detailed initial prompt to start them off. We took a different approach to previous studies in that we conducted detailed analysis of the results of fewer tasks. We used a leading AI agent software (Roo Code) and asked it to solve three fisheries modelling tasks of increasing complexity: (1) fit a von Bertalannfy growth curve to data, (2) fit a generalized linear model to estimate the relationship between juvenile fish abundance and habitat cover and (3) complete a yield per recruit analysis. For the growth curve fitting we explored two prompting strategies, one that represented an expert user who can provide code implementation details, and one that represented an user who was not knowledgeable about coding frameworks. For the second two problems we conducted detailed analysis of replicate results. 
 
-Recent studies have shown that they are sub-optimal in a conversation setting, though users tend to use them this way and underspecify what they want intially. Agents
-
-
-
-## Tips for writing the initial prompt
+## Methods
 
 
-- fully specify everyting, including testing for confounding
-- put rmd is root directory to aid with rendering
-- specifcy how to use Rscript 
+### Overview 
 
+We used the Roo Code agentic AI software (v3.25.1, extension to VS Code  v1.103.0.) to complete the tasks. We set Roo Code to 'Code' mode for all tests. Roo Code was set to 'auto-approve' and allowed to auto-approve tasks that included: read files, write files, retry failed API requests, use model context protocols (note no special additional MCP were installed when these tests were run), create sub-tasks, execute code, answer its own questions and create and tick of a 'todo' list. Occaisional manual intervention was required to approve tasks that involved terminal comands, in such cases we checked the command was safe to run then approved it. 
+
+We tested two models: Claude Sonnet Version 4 and Kimi K2. 
+About Sonnet V4
+About Kimi K2
+
+We used a strategy where we provided a detailed in initial prompt for each problem, in markdown format (Supplemental material). Recent studies have shown that AI chatbots perform better if given all instructions up front [@laban2025llms]. Thus we assumed the user has some knowledge of fisheries modelling and prior experience with the R program. We drew on prominent references to develop the prompts, such that the AI agents were provided with accurate information on statistical theory and implementation details. Overall our prompts included sections for: 
+
+- Introduction
+- Aims of the analysis
+- Data methodology
+- Analysis methodology
+- Instructions for the agent
+- Tech context
+- Workflow
+- Directory structure
+- Meta data
+
+We drew best practice prompting strategies to write these instructions [@brownLLMecology]. 
+
+We ran then ran 10 replicates for each prompt and each of the two models. Replicates are neccessary because LLM responses have some randomness. Ten is widely considered a sufficient to capture variability in response [e.g. @laban2025llms]. 
+
+Once Roo completed each task it initiates a 'attempt_completion' that finishes the agent's interations. Once this was complete, we captured the chat history, token input, token output and cost (estimated). We then saved the resulting project files for further analysis. 
+
+We assessed each completed task against multivariate rubrics. Quantitative outputs (e.g. p-values or 'statistical significance') were assessed quantitively. Qualitative outputs were quantified by scoring the outputs against categorical outcome metrics. For all outcomes we then calculated: Aptitude and reliability [@laban2025llms]. 
+
+Aptitude is a measure of the quality of the Agent's best responses and was defined: 
+
+$$
+\text{Aptitude} = \frac{1}{k} \sum_{i=1}^{k} S_{(i)}
+$$
+
+where $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
+
+Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined:
+$$
+\text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
+$$
+
+where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.   
+
+### von Bertlanffy growth model
+
+### Generalized linear model of fish habitat
+
+### Yield per recruit analysis
+
+## Results 
+
+## Discussion
+
+When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an eelemnt of repeatability, in that results are reasonably consistent. 
 
 ## Test case notes
 
@@ -58,3 +104,12 @@ https://arxiv.org/pdf/2505.06120
 
 MQMF
 https://haddonm.github.io/URMQMF/static-models.html#growth
+
+## Supplemental material 
+
+
+## Tips for writing the initial prompt
+
+- fully specify everyting, including testing for confounding
+- put rmd is root directory to aid with rendering
+- specifcy how to use Rscript

@@ -26,10 +26,12 @@ Fisheries modelling can take years of specialist training to learn. Agentic AI s
 ## Plan 
 
 Look at three models:
-VB parameter estimation - run them
-- need to add bootstrapping
-GLM of fish habitat. Done now, re-run for kimi k2
-VPA/or SPR
+VB parameter estimation - Testing. 
+I have made a 'simple' and 'full' version. For now use the 'simple' version. If this works well enough, don't bother with the full version. Could do anotehr v
+Then re-run without code 
+GLM of fish habitat. Done, mark Kimi K2 results
+
+VPA/or SPR WRite plan and run 
 
 Full YPR: https://haddonm.github.io/URMQMF/simple-population-models.html#simple-yield-per-recruit
 

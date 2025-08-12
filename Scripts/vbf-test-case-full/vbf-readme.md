@@ -30,7 +30,7 @@ Also create a plot that shows the observed lengths at age and the fitted von Ber
 
 ### Tech context
 - We will use the R program
-- Use the `FSA` package for fitting the von Bertalanffy growth model
+- Use `nls` fitting the von Bertalanffy growth model
 - Use the `car` package for bootstrapping the model to estimate confidence intervals
 - ggplot2 with  `theme_set(theme_classic())` for plots
 
@@ -51,6 +51,8 @@ library(car)
 f.boot1 <- Boot(f.fit)
 confint(f.boot1, type = "perc")
 ```
+
+
 
 ### Workflow 
 

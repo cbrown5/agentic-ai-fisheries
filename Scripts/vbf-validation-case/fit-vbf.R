@@ -1,16 +1,17 @@
  #vB growth curve fit to Pitcher and Macdonald derived seasonal data  
+# This version uses FSA functions
 
 library(FSA)
 library(car)
 
-( vb <- makeGrowthFun(type = "von Bertalanffy") )
+ vb <- makeGrowthFun(type = "von Bertalanffy") 
 
 #
 # Set parameters 
 #
 
 pars_true <- c(100, 0.2, -0.2)
-label <- c("Linf","K","t0")  \
+label <- c("Linf","K","t0")  
 sigma_growth <- 5
 tmax <- 20
 
@@ -51,3 +52,6 @@ f.fit
 f.boot1 <- Boot(f.fit)  # Be patient! Be aware of some non-convergence
 confint(f.boot1, type = "perc")
 
+pred_age <- 5
+pred_length <- predict(f.fit, newdata = data.frame(age = pred_age))
+cat("Predicted length at age 5:", pred_length, "\n")
