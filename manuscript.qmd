@@ -1,5 +1,5 @@
 ---
-title: "Climate change and fishing pressure reduce predictability of species abundance change"
+title: "Automating fisheries modelling with agentic AI"
 bibliography: references.bib
 # csl: oneearth.csl
 editor: visual
@@ -9,28 +9,24 @@ format: docx
     # reference-doc: template.docx
 ---
 
-## Summary
+Journal: Fish and Fisheries 
+
+## Abstract
+
+-   250 words
+
+-   6 keywords - alphabetical order
 
 \[re-write this as its for expert users as well. \] Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) von-Bertalanffy parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) yield per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.
 
-Notes 
-Two types of users. 
 
-No point going code for VBF because it basically works for every run. 
-Just write up why run 11 and run 13 broke. Explain why it broke. 
-
-VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. 
-(bar plot, or just %s? )
-
-GLM: 
-
-
+## Table of contents
 
 ## Introduction
 
 Fisheries modeling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (insert ref to stock assessment). Fish ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. ... stuff abotu open code in modelling... The limited number of trained modelers further constrains fisheries stock assessments, compounding issues with constraints on data availability.
 
-Fisheries m
+Fisheries m....
 
 Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modeling workflows. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry. However, critical questions remain about the reliability and quality of AI-generated code.
 
@@ -121,7 +117,7 @@ Reliability is a measure of the consistency of the Agent's responses across the 
 \text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
 $$
 
-where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
+where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.  
 
 ### Von Bertalanffy Growth Model Test Case
 
@@ -149,39 +145,52 @@ The detailed specification sheet, drawing from established fisheries modeling re
 
 ## Results
 
+### VBF
+
+Alex doing plot 
+
+No point going to mark code for VBF because it basically works for every run. 
+Just write up why run 11 and run 13 broke. Explain why it broke. 
+
+VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. 
+(bar plot, or just %s? )
+
+### GLM 
+
+Richard doing the plot 
 
 ## Discussion
 
 When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an eelemnt of repeatability, in that results are reasonably consistent.
 
-## Test case notes
 
-### GLM notes
+## 4 Conclusion
 
-Generally didn't do scale transform on predictions Mixed results as to whether it did count based residual diagnostics or not run 3 did a 3d plot!
+## Acknowledgements
 
-run5 much more terse than other runs, provided much less interpretation. Shows in the price. run7 minor error in figure axes labels, didn't note that it was log abundance
+## Data availability
 
-Often did too much, or did the wrong things, in addition to the right things. e.g. asked it to use model slection with LR tests, but then it woudl do that as well as give pvalue for the sumamry table. 
-It would also 'forget' we were dealing with a count GLM and interpret validation plots as if they were normal data, so not perfectly accurate for that task. Just shows if you are less specific it won't neccessarily do the right thing. Another common problem was over-itnerpreting the model predictions in space with no data (high soft coral and high CB branching coral). Again, generally it got it right when answering teh questions, it was the additional discussion it added in that was wrong. 
-Common additional suggestions of Claude were to check spatial AC, consider ohter variables. It never considered confounding among soft and CB as an issue. 
+-   plus link to repository
 
-Kimi failing to fully complete tasks like actually save the plots, or make the report, failing to check output of its own code. Note that Roo Code may be optimized for Claude, not so much Kimi. 
+## Conflict of Interest
 
-### VBF case notes
-
-reference: https://derekogle.com/fishR/2019-12-31-ggplot-vonB-fitPlot-1
 
 ## References
 
-https://arxiv.org/pdf/2505.06120
 
-MQMF https://haddonm.github.io/URMQMF/static-models.html#growth
 
 ## Supplemental material
 
-## Tips for writing the initial prompt
 
--   fully specify everyting, including testing for confounding
--   put rmd is root directory to aid with rendering
--   specifcy how to use Rscript
+## Tables
+
+-   All abbreviations must be defined in footnotes. Footnote symbols: †, ‡, §, ¶, should be used (in that order) and \*, \*\*,\*\*\* should be reserved for P-values
+-   **TABLE 1.** xxx
+
+## Figure Legends
+
+-   Figures and supporting info should be supplied as separate files
+    -   [electronic_artwork_guidelines.pdf](https://media.wiley.com/assets/7323/92/electronic_artwork_guidelines.pdf)
+    -   In-text Figures: **CAPTION 1 (A)** xxx
+    -   Supporting information Figures: **Table S1** xxx; **Appendix S1**
+-   Include definitions of any symbols used and define/explain all abbreviations and units of measurement

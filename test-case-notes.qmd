@@ -1,0 +1,22 @@
+
+## Test case notes
+
+### GLM notes
+
+Generally didn't do scale transform on predictions Mixed results as to whether it did count based residual diagnostics or not run 3 did a 3d plot!
+
+run5 much more terse than other runs, provided much less interpretation. Shows in the price. run7 minor error in figure axes labels, didn't note that it was log abundance
+
+Often did too much, or did the wrong things, in addition to the right things. e.g. asked it to use model slection with LR tests, but then it woudl do that as well as give pvalue for the sumamry table. 
+It would also 'forget' we were dealing with a count GLM and interpret validation plots as if they were normal data, so not perfectly accurate for that task. Just shows if you are less specific it won't neccessarily do the right thing. Another common problem was over-itnerpreting the model predictions in space with no data (high soft coral and high CB branching coral). Again, generally it got it right when answering teh questions, it was the additional discussion it added in that was wrong. 
+Common additional suggestions of Claude were to check spatial AC, consider ohter variables. It never considered confounding among soft and CB as an issue. 
+
+Kimi failing to fully complete tasks like actually save the plots, or make the report, failing to check output of its own code. Note that Roo Code may be optimized for Claude, not so much Kimi. 
+
+### VBF case notes
+
+reference: https://derekogle.com/fishR/2019-12-31-ggplot-vonB-fitPlot-1
+
+https://arxiv.org/pdf/2505.06120
+
+MQMF https://haddonm.github.io/URMQMF/static-models.html#growth

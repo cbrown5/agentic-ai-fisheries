@@ -1,0 +1,6 @@
+## Tips for writing the spec
+
+-   fully specify everyting, including testing for confounding
+-   put rmd is root directory to aid with rendering
+-   specifcy how to use Rscript
+
