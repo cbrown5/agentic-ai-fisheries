@@ -13,47 +13,101 @@ format: docx
 
 \[re-write this as its for expert users as well. \] Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) von-Bertalanffy parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) yield per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.
 
-## Notes to integrate
+Notes 
+Two types of users. 
+
+No point going code for VBF because it basically works for every run. 
+Just write up why run 11 and run 13 broke. Explain why it broke. 
+
+VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. 
+(bar plot, or just %s? )
+
+GLM: 
 
 
 
 ## Introduction
 
-Fisheries modelling. Agentic AI, what it is, what it can do.
+Fisheries modeling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (insert ref to stock assessment). Fish ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. ... stuff abotu open code in modelling... The limited number of trained modelers further constrains fisheries stock assessments, compounding issues with constraints on data availability.
 
-Problem: Fisheries modelling can be time-consuming and required much expertise. AI agents could speed this up and increase access to tools. But can it generate reliable results?
+Fisheries m
 
-What came before. Limited but increasing number of tests in the R language. LLMs can create bio-informatics code that executes, but not neccessarily code that works accurately [@jansen2025leveraging]. Perform better if they can self correct. For stats, LLMs can help with stats, and do better with data and reference material [@zhu2024large]. Past tests have tended to focus on the analysis of large numbers of simple problems. However, fisheries modelling is complex and involves multiple interacting steps in its workflows. AI Agents could have the capacity to tackle these problems, becuase of their ability to self correct and update their analysis strategy based on previous results. Agents could solve this problem, so we need tests of the credibility of their outputs .
+Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modeling workflows. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry. However, critical questions remain about the reliability and quality of AI-generated code.
 
-Here we test how accurately AI agents can complete three fisheries tasks. We ran the AI agents fully autonomously, with only a detailed initial prompt to start them off. We took a different approach to previous studies in that we conducted detailed analysis of the results of fewer tasks. We used a leading AI agent software (Roo Code) and asked it to solve three fisheries modelling tasks of increasing complexity: (1) fit a von Bertalannfy growth curve to data, (2) fit a generalized linear model to estimate the relationship between juvenile fish abundance and habitat cover and (3) complete a yield per recruit analysis. For the growth curve fitting we explored two prompting strategies, one that represented an expert user who can provide code implementation details, and one that represented an user who was not knowledgeable about coding frameworks. For the second two problems we conducted detailed analysis of replicate results.
+Previous tests, primarily in the R language, have revealed significant challenges. While LLMs can generate executable code, less than 50% of generated scripts were technically accurate [@jansen2025leveraging]. Notably, code execution rates improved when AI models could self-correct [@zhu2024large]. Key insights have emerged about effective AI interaction:
+
+-   Contextual information is crucial for making informed statistical choices
+-   Providing reference code and statistical approaches guides AI agents
+-   One-shot prompting with comprehensive examples often yields more reliable results than multi-turn conversations [@laban2025llms]
+
+The development of detailed specification sheets—long, precise instruction sets written in plain English—represents a promising approach to improving AI-generated analysis. These specifications can articulate analysis requirements clearly, making them accessible to both expert and novice users.
+
+We test whether AI agents can transform specification sheets into reliable fisheries models by examining three increasingly complex tasks: (1) von Bertalanffy growth curve fitting, (2) generalized linear modeling of fish-habitat relationships, and (3) yield per recruit analysis. We explore two prompting strategies: one representing an expert user providing implementation details, and another simulating a user with minimal coding knowledge.
+
+Our study aims to evaluate the aptitude and reliability of AI agents in generating fisheries models, addressing critical questions about their potential to democratize technical expertise while maintaining scientific rigor.
 
 ## Methods
 
 ### Overview
 
-We used the Roo Code agentic AI software (v3.25.1, extension to VS Code v1.103.0.) to complete the tasks. We set Roo Code to 'Code' mode for all tests. Roo Code was set to 'auto-approve' and allowed to auto-approve tasks that included: read files, write files, retry failed API requests, use model context protocols (note no special additional MCP were installed when these tests were run), create sub-tasks, execute code, answer its own questions and create and tick of a 'todo' list. Occaisional manual intervention was required to approve tasks that involved terminal comands, in such cases we checked the command was safe to run then approved it.
+Our methodological approach centered on developing comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors.
 
-We tested two models: Claude Sonnet Version 4 and Kimi K2. About Sonnet V4 About Kimi K2
 
-We used a strategy where we provided a detailed in initial prompt for each problem, in markdown format (Supplemental material). Recent studies have shown that AI chatbots perform better if given all instructions up front [@laban2025llms]. Thus we assumed the user has some knowledge of fisheries modelling and prior experience with the R program. We drew on prominent references to develop the prompts, such that the AI agents were provided with accurate information on statistical theory and implementation details. Overall our prompts included sections for:
+### AI Agents and Large Language Models: Technical Background
 
--   Introduction
--   Aims of the analysis
--   Data methodology
--   Analysis methodology
--   Instructions for the agent
--   Tech context
--   Workflow
--   Directory structure
--   Meta data
+#### Large Language Model Fundamentals
+
+Large language models (LLMs) are advanced neural networks designed to generate human-like responses through next-token prediction. These models are trained on vast internet-sourced datasets, enabling them to perform complex reasoning tasks, including mathematical calculations, logical reasoning, and computer code generation.
+
+#### AI Agent Architecture
+
+An AI agent represents a sophisticated software framework that leverages LLMs through a structured interaction protocol. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs
+
+#### Model Context Protocol
+
+The Model Context Protocol (MCP) provides a critical framework for guiding LLM interactions. When presented with a task, an AI agent: 1. Receives a comprehensive initial instruction set 2. Analyzes the task's requirements 3. Determines appropriate response strategies (e.g., explanation, code generation, clarification request) 4. Executes specialized tools for specific actions
+
+#### Advantages and Challenges
+
+**Strengths:** - Autonomous workflow generation - Minimal human intervention required - Ability to self-correct and adapt
+
+**Potential Limitations:** - Risk of "context poisoning" (diverging from intended task) - Potential generation of logically flawed solutions - Variability in output consistency
+
+**Mitigation Strategies:** - Developing detailed specification sheets - Implementing rigorous prompting techniques - Conducting multiple replicate runs to assess reliability
+
+Our study aims to systematically evaluate these AI agents' performance in complex scientific modeling tasks, addressing both their transformative potential and inherent challenges.
+
+#### Specification Sheet Development
+
+We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
+
+The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
+
+#### Experimental Design
+
+We implemented a rigorous experimental design to assess AI agent performance:
+
+1.  **Multiple AI Models**: We tested two large language models—Claude Sonnet Version 4 and Kimi K2—to evaluate inter-model variability.
+
+2.  **Replicate Runs**: We conducted 10 independent runs for each prompt and model. This approach accounts for the inherent randomness in AI-generated outputs and allows us to quantify response consistency. Ten replicates are widely considered sufficient to capture response variability in computational studies [@laban2025llms].
+
+3.  **Comprehensive Evaluation**: Each task was assessed using multivariate rubrics that evaluated both quantitative outputs (e.g., statistical significance) and qualitative performance through categorical outcome metrics.
+
+#### Technical Implementation
+
+We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
+
+Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval.
 
 We drew best practice prompting strategies to write these instructions [@brownLLMecology].
 
-We ran then ran 10 replicates for each prompt and each of the two models. Replicates are neccessary because LLM responses have some randomness. Ten is widely considered a sufficient to capture variability in response [e.g. @laban2025llms].
+We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms].
 
-Once Roo completed each task it initiates a 'attempt_completion' that finishes the agent's interations. Once this was complete, we captured the chat history, token input, token output and cost (estimated). We then saved the resulting project files for further analysis.
+After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
 
-We assessed each completed task against multivariate rubrics. Quantitative outputs (e.g. p-values or 'statistical significance') were assessed quantitively. Qualitative outputs were quantified by scoring the outputs against categorical outcome metrics. For all outcomes we then calculated: Aptitude and reliability [@laban2025llms].
+We evaluated each task using multivariate rubrics that: - Quantitatively assessed statistical outputs (e.g., p-values) - Qualitatively scored outputs against predefined categorical metrics
+
+For each task, we calculated two key performance indicators: Aptitude and Reliability [@laban2025llms].
 
 Aptitude is a measure of the quality of the Agent's best responses and was defined:
 
@@ -69,13 +123,32 @@ $$
 
 where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
-### von Bertlanffy growth model
+### Von Bertalanffy Growth Model Test Case
+
+#### Rationale and Significance
+
+The von Bertalanffy (VB) growth model represents a fundamental analytical task in fisheries stock assessment. We selected this model for several critical reasons:
+
+1.  **Disciplinary Specificity**: VB growth modeling is a highly specialized task primarily used in fisheries science, making it an ideal test of AI agents' domain-specific capabilities.
+
+2.  **Complexity Gradient**: While seemingly straightforward, the task involves nuanced statistical challenges, particularly in parameter estimation and confidence interval calculation.
+
+#### Experimental Design
+
+**Data Simulation** We generated a single, carefully controlled dataset with known growth parameters to: - Minimize variability introduced by data heterogeneity - Enable precise assessment of parameter recovery accuracy - Provide a standardized benchmark for AI performance
+
+**Specification Requirements** The AI agents were tasked with: - Estimating VB growth function parameters - Calculating confidence intervals via bootstrapping - Predicting fish size at a specific age (5 years) - Generating confidence intervals for size predictions
+
+**Analytical Objectives** Our primary goals were to evaluate the AI agents' ability to: - Recover known parameters accurately - Implement bootstrapping techniques correctly - Produce statistically sound estimates with appropriate uncertainty quantification
+
+The detailed specification sheet, drawing from established fisheries modeling references (e.g., [@ogle2016introductory]), provided comprehensive guidance for the AI agents.
 
 ### Generalized linear model of fish habitat
 
 ### Yield per recruit analysis
 
 ## Results
+
 
 ## Discussion
 
@@ -88,6 +161,12 @@ When starting out a fisheries modeller won't have fully informed instructions. T
 Generally didn't do scale transform on predictions Mixed results as to whether it did count based residual diagnostics or not run 3 did a 3d plot!
 
 run5 much more terse than other runs, provided much less interpretation. Shows in the price. run7 minor error in figure axes labels, didn't note that it was log abundance
+
+Often did too much, or did the wrong things, in addition to the right things. e.g. asked it to use model slection with LR tests, but then it woudl do that as well as give pvalue for the sumamry table. 
+It would also 'forget' we were dealing with a count GLM and interpret validation plots as if they were normal data, so not perfectly accurate for that task. Just shows if you are less specific it won't neccessarily do the right thing. Another common problem was over-itnerpreting the model predictions in space with no data (high soft coral and high CB branching coral). Again, generally it got it right when answering teh questions, it was the additional discussion it added in that was wrong. 
+Common additional suggestions of Claude were to check spatial AC, consider ohter variables. It never considered confounding among soft and CB as an issue. 
+
+Kimi failing to fully complete tasks like actually save the plots, or make the report, failing to check output of its own code. Note that Roo Code may be optimized for Claude, not so much Kimi. 
 
 ### VBF case notes
 
