@@ -1,0 +1,21 @@
+﻿folder_name,User,Model,Provider,Roo code mode,Total cost,Total tokens in (1000s),Total tokens out (1000s),p-values accurate?,Correct p-value included in report,Produced diagnostic plots?,Diagnostic plots produced,Saved diagnostic plots as PNG files?,Interpretation of diagnostics provided?,Interpretation of model verification,Created prediction plots?,Used correct scale for predictive plots?,Included confidence intervals?,Produced markdown report?,Produced diagnostic report?,Main report knits successfully?,Diagnostic report knits successfully?,Answered all study aims?,Answered aims accurately,Included required report sections?,Correct interpretation of results?,Used modular scripts?,Innovation or additional insights?,Identified confounding between CB_cover and soft_cover?,
+run1,Chris,Claude sonnet 4,Open router,code,0.77,932.6,19.7,2,1,1,1,1,1,1,3,0,1,1,1,1,1,2,2,2,2,1,1,0,
+run2,Chris,Claude sonnet 4,Open router,code,0.57,728.4,16.6,2,1,1,1,1,1,2,3,0,1,1,1,1,1,2,2,2,2,1,0,0,
+run3,Chris,Claude sonnet 4,Open router,code,0.92,849.1,21,2,1,1,2,1,1,3,3,0,1,1,1,1,1,2,2,2,3,1,1,0,
+run4,Chris,Claude sonnet 4,Open router,code,0.8,839.9,16.7,2,1,1,2,1,1,3,3,0,1,1,1,1,1,2,2,2,2,1,0,0,
+run5,Chris,Claude sonnet 4,Open router,code,0.53,656.7,15.3,2,1,1,1,1,1,2,3,1,1,1,1,1,1,1,2,2,2,1,0,0,
+run6,Chris,Claude sonnet 4,Open router,code,0.7,903.2,18.6,2,1,1,1,1,1,2,3,0,1,1,1,1,1,2,2,2,3,1,1,0,
+run7,Chris,Claude sonnet 4,Open router,code,0.61,792.9,17.6,2,1,1,2,1,1,2,3,1,1,1,1,1,1,2,2,2,3,1,0,0,
+run8,Chris,Claude sonnet 4,Open router,code,0.78,766.3,17.9,2,1,1,2,1,1,3,3,1,1,1,1,1,1,2,2,2,3,1,0,0,
+run9,Chris,Claude sonnet 4,Open router,code,0.58,786.5,15,2,1,1,1,1,1,2,3,1,1,1,1,1,1,2,2,2,3,1,1,0,
+run10,Chris,Claude sonnet 4,Open router,code,0.67,629.9,15.2,2,1,1,1,1,1,2,3,0,1,1,1,1,1,2,2,2,3,1,1,0,
+run11,Chris,Kimi-K2,Open router,code,0.21,301.7,8.6,0,0,1,1,1,1,2,2,1,1,1,1,1,0,1,2,2,1,1,0,0,"Wrote code for predictive plots, but didn't run it"
+run12,Chris,Kimi-K2,Open router,code,0.24,332.9,6.8,2,1,1,1,1,1,2,0,0,0,1,1,1,0,1,2,2,1,1,0,0,Note had to move diagnostic report to root to get it to knit. 
+run13,Chris,Kimi-K2,Open router,code,0.23,304.2,5.1,2,0,1,1,1,1,1,2,1,1,0,1,0,0,1,0,2,1,1,0,0,
+run14,Chris,Kimi-K2,Open router,code,0.17,255.1,5.8,2,0,1,1,1,0,0,2,1,1,0,0,0,0,0,0,0,0,1,0,0,Made prediction plots but I had to run script to get them
+run15,Chris,Kimi-K2,Open router,code,0.16,224.8,6.2,2,0,1,1,1,1,2,1,1,1,0,1,0,1,0,0,0,0,1,0,0,
+run16,Chris,Kimi-K2,Open router,code,0.35,508.1,10,2,1,1,1,1,1,1,1,1,1,1,0,1,0,1,2,1,1,1,0,0,
+run17,Chris,Kimi-K2,Open router,code,0.36,522,8.1,2,1,1,1,1,1,1,3,0,1,1,0,1,0,1,2,1,1,1,1,0,
+run18,Chris,Kimi-K2,Open router,code,0.22,312.8,63,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,0,1,1,1,0,0,
+run19,Chris,Kimi-K2,Open router,code,0.2,278.7,8.6,1,0,1,1,0,1,1,3,1,1,1,1,1,1,1,0,2,1,1,0,0,Got stuck in endless loop
+run20,Chris,Kimi-K2,Open router,code,0.16,216.2,63,2,0,1,1,1,1,1,3,1,1,1,1,0,1,1,0,2,2,1,0,0,

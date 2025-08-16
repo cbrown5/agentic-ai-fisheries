@@ -13,10 +13,8 @@
 
 # Folders
 ############
-**/[dD]ata/**
 **/[oO][lL][dD]/**
 **/[pP]rivate/**
-**/[sS]hared**/**
 
 # DOCS
 ##########
@@ -34,7 +32,6 @@
 
 # Standard Data files
 ######################
-*.[cC][sS][vV]
 *.[xX][lL][sS][xX]
 *.[tT][xX][tT]
 
