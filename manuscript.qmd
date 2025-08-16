@@ -9,7 +9,7 @@ format: docx
     # reference-doc: template.docx
 ---
 
-Journal: Fish and Fisheries 
+Journal: Fish and Fisheries
 
 ## Abstract
 
@@ -19,10 +19,9 @@ Journal: Fish and Fisheries
 
 \[re-write this as its for expert users as well. \] Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) von-Bertalanffy parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) yield per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.
 
-
 ## Table of contents
 
-## Introduction
+## 1. Introduction
 
 Fisheries modeling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (insert ref to stock assessment). Fish ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. ... stuff abotu open code in modelling... The limited number of trained modelers further constrains fisheries stock assessments, compounding issues with constraints on data availability.
 
@@ -42,12 +41,11 @@ We test whether AI agents can transform specification sheets into reliable fishe
 
 Our study aims to evaluate the aptitude and reliability of AI agents in generating fisheries models, addressing critical questions about their potential to democratize technical expertise while maintaining scientific rigor.
 
-## Methods
+## 2. Methods
 
 ### Overview
 
 Our methodological approach centered on developing comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors.
-
 
 ### AI Agents and Large Language Models: Technical Background
 
@@ -114,11 +112,12 @@ $$
 where $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
 Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined: 
+
 $$
 \text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
 $$
 
-where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.  
+where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
 ### Von Bertalanffy Growth Model Test Case
 
@@ -142,43 +141,47 @@ The detailed specification sheet, drawing from established fisheries modeling re
 
 ### Generalized linear model of fish habitat
 
-#### Spec 
 
-Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables). 
+
+#### Spec
+
+Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables).
 
 #### Marking rubric
 
-Order of priority for awarding marks: Used report as primary source of information. If this wasn't knitted we knitted it. If it didn't knit we read the rmd file. If there was no rmd file, or the rmd file was missing key sections, we looked for figures and at the code. DId this for p-values, prediction plots, diagnostic plots. 
+Order of priority for awarding marks: Used report as primary source of information. If this wasn't knitted we knitted it. If it didn't knit we read the rmd file. If there was no rmd file, or the rmd file was missing key sections, we looked for figures and at the code. DId this for p-values, prediction plots, diagnostic plots.
 
 ### Yield per recruit analysis
 
-## Results
+## 3. Results
 
 ### VBF
 
-Alex doing plot 
+Alex doing plot
 
-No point going to mark code for VBF because it basically works for every run. 
-Just write up why run 11 and run 13 broke. Explain why it broke. 
+No point going to mark code for VBF because it basically works for every run. Just write up why run 11 and run 13 broke. Explain why it broke.
 
-VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. 
-(bar plot, or just %s? )
+VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. (bar plot, or just %s? )
 
-### GLM 
+Add number for how often kimi stuffed up the 'size at age 5' name in the database. It often made a new databse with the wrong names. 
 
-Richard doing the plot 
+### GLM
 
-Kimi was lazy, often not completing reports (e.g. in run13) or didn't do as instructed (e.g. used wrong ggplot theme.), or run15 it wrote code for plots (which worked) but didn't complete the task. 
-Kimi often 'lied' e.g. run 14 said it had completed final report, but there was none. 
+Richard doing the plot
 
-### YPR 
+Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present.
 
-## Discussion
+
+### YPR
+
+Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish]. 
+
+
+## 4. Discussion
 
 When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an eelemnt of repeatability, in that results are reasonably consistent.
 
-
-## 4 Conclusion
+## 5. Conclusion
 
 ## Acknowledgements
 
@@ -188,13 +191,9 @@ When starting out a fisheries modeller won't have fully informed instructions. T
 
 ## Conflict of Interest
 
-
 ## References
 
-
-
 ## Supplemental material
-
 
 ## Tables
 
