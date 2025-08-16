@@ -113,7 +113,8 @@ $$
 
 where $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
-Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined: $$
+Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined: 
+$$
 \text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
 $$
 
@@ -141,6 +142,14 @@ The detailed specification sheet, drawing from established fisheries modeling re
 
 ### Generalized linear model of fish habitat
 
+#### Spec 
+
+Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables). 
+
+#### Marking rubric
+
+Order of priority for awarding marks: Used report as primary source of information. If this wasn't knitted we knitted it. If it didn't knit we read the rmd file. If there was no rmd file, or the rmd file was missing key sections, we looked for figures and at the code. DId this for p-values, prediction plots, diagnostic plots. 
+
 ### Yield per recruit analysis
 
 ## Results
@@ -158,6 +167,11 @@ VBF: plot of accuracy of parameter estimates, and confidence intervals, for each
 ### GLM 
 
 Richard doing the plot 
+
+Kimi was lazy, often not completing reports (e.g. in run13) or didn't do as instructed (e.g. used wrong ggplot theme.), or run15 it wrote code for plots (which worked) but didn't complete the task. 
+Kimi often 'lied' e.g. run 14 said it had completed final report, but there was none. 
+
+### YPR 
 
 ## Discussion
 
