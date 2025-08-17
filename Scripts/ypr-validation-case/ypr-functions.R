@@ -8,6 +8,14 @@ vB <- function(pars, age) {
    Linf * (1 - exp(-k * (age - t0)))
 }
 
+vB_inverted <- function(pars, length) {
+   # Inverse of the von Bertalanffy growth equation
+   Linf <- pars[1]
+   k <- pars[2]
+   t0 <- pars[3]
+   (log(1 - length / Linf) / -k) + t0
+}
+
 ## Function for length to weight conversion
 length_to_weight <- function(length, a = 0.015, b = 3.0) {
    # length in cm, returns weight in grams

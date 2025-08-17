@@ -31,7 +31,7 @@ FF <- round(-log(1 - H),5)  # Fully selected fishing mortality
 N0 <- 1000  
 M <- 0.169  # Natural mortality
 sel_delta <- 5  # Selectivity delta
-A50 <- 2  # Selectivity at age 50% (as50)
+A50 <- 5  # Selectivity at age 50% (as50)
 
 # Plot size vs age
 ggplot(data.frame(age = age, length = laa), aes(x = age, y = length)) +
@@ -39,12 +39,10 @@ ggplot(data.frame(age = age, length = laa), aes(x = age, y = length)) +
   labs(title = "Length at Age for Bolbometopon muricatum",
        x = "Age (years)", y = "Length (mm)")
 
-
-
-A50vals <- c(1, 2, 3) # Selectivity at age 50% (as50) values for sensitivity analysis
-
-
-
+#Calculate age at sizes of 400, 500 and 600mm
+size_limit <- c(400, 500, 600)
+A50vals <- vB_inverted(vbparams,size_limit)
+slimdat <- data.frame(A50 = A50vals, size_limit = size_limit)
 #
 # Plot selectivity curve
 #
@@ -82,34 +80,12 @@ ggplot(yield, aes(x = FF, y = Yield, color = A50, group = A50)) +
     theme_classic() + 
     theme(legend.position = "bottom")
 
+# Create a summary table that includes the reference points for each size limit
+summary_table <- ref_points %>%
+    select(A50,Fmax, Ymax, F01) %>%
+    left_join(slimdat, by = "A50") %>%
+    pivot_longer(cols = -c(A50, size_limit), names_to = "Reference Point", values_to = "Value") %>%
+    mutate(`Reference Point` = factor(`Reference Point`, levels = c("Fmax", "Ymax", "F01")))  %>%
+    select(size_limit, ref_point = `Reference Point`, A50, value = Value)
 
-# Plot selectivity curves 
-ggplot(sel_curves, aes(x = age, y = selectivity, color = factor(parameter_value))) +
-    geom_line(size = 1.2) +
-    labs(x = "Age", y = "Selectivity", 
-         color = "as50",
-         title = "Selectivity Curves by Age") +
-    scale_color_manual(values = c("red", "blue", "green")) +
-    theme_minimal() +
-    theme(legend.position = "bottom")
-
-
-
-
-# Example: Additional sensitivity analyses using the new function
-
-# Sensitivity analysis for different natural mortality rates
-# M_values <- c(0.1, 0.169, 0.25)
-# M_results <- ypr_sensitivity_analysis(param_values = M_values,
-#                                      param_name = "M", 
-#                                      H = H, age = age, vbparams = vbparams,
-#                                      M = M, N0 = N0, WaA = WaA)
-
-# Sensitivity analysis for different selectivity delta values
-# delta_values <- c(0.5, 1.0, 2.0)
-# delta_results <- ypr_sensitivity_analysis(param_values = delta_values,
-#                                          param_name = "sel_delta",
-#                                          H = H, age = age, vbparams = vbparams,
-#                                          M = M, N0 = N0, WaA = WaA)
-
-
+write.csv(summary_table, "Scripts/ypr-validation-case/ypr_reference_points.csv", row.names = FALSE)
