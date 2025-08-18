@@ -95,7 +95,7 @@ Manual intervention was required only for terminal commands, which were carefull
 
 We drew best practice prompting strategies to write these instructions [@brownLLMecology].
 
-We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms].
+We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms]. Quarantined to prevent sharing of prompt caches.
 
 After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
 
@@ -111,7 +111,7 @@ $$
 
 where $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
-Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined: 
+Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined:
 
 $$
 \text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
@@ -141,8 +141,6 @@ The detailed specification sheet, drawing from established fisheries modeling re
 
 ### Generalized linear model of fish habitat
 
-
-
 #### Spec
 
 Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables).
@@ -163,7 +161,7 @@ No point going to mark code for VBF because it basically works for every run. Ju
 
 VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. (bar plot, or just %s? )
 
-Add number for how often kimi stuffed up the 'size at age 5' name in the database. It often made a new databse with the wrong names. 
+Add number for how often kimi stuffed up the 'size at age 5' name in the database. It often made a new databse with the wrong names.
 
 ### GLM
 
@@ -171,11 +169,9 @@ Richard doing the plot
 
 Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present.
 
-
 ### YPR
 
-Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish]. 
-
+Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
 
 ## 4. Discussion
 

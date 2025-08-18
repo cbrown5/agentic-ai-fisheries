@@ -6,12 +6,11 @@
 Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 
 ## TODO
-- Move the test files to another project directory
-- make a framework to record results. 
-- Work out VB model
-- Work out YPR model
-- Do glm model runs again, I tihnk teh readme is good now. 
-
+- Ask Alex to bring over results into this repo
+- Ask Alex to do aptitude and consistency stats, with binary outcome
+- Richard to do GLM results
+- Leigha running YPR analysis
+- Chris to keep working on manuscript
 
 ## Summary
 

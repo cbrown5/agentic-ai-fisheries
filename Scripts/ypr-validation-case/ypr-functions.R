@@ -29,6 +29,8 @@ logist <- function(A50, delta, A) {
 
 ## Function for Baranov catch equation
 bce <- function(M, Fat, Nt, ages) {
+    #Note that Z at age 0 is ignored. 
+
     nage <- length(ages)
     lFat <- length(Fat)
 
@@ -46,32 +48,6 @@ bce <- function(M, Fat, Nt, ages) {
         ans[a, ] <- c(newN, mort, catch)
     }
     return(ans)
-}
-
-# Calculate reference points for each selectivity scenario
-calculate_reference_points <- function(yield_data) {
-# Reference points 
-# Fmax: the fishing mortality rate which produces the maximum yield per recruit.
-# F0.1: the fishing mortality rate corresponding to 10% of the slope of the yield-per-recruit curve at the origin. 
-  ref_points <- yield_data %>%
-    arrange(H) %>%
-    summarise(
-      Fmax = FF[which.max(Yield)],
-      Ymax = max(Yield),
-      # F0.1 approximation (fishing mortality at 10% of initial slope)
-      initial_slope = (Yield[2] - Yield[1]) / (FF[2] - FF[1]),
-      target_slope = 0.1 * initial_slope,
-      .groups = "drop"
-    )
-  
-    # Find F0.1
-    datf01 <- yield_data %>%
-        arrange(FF) %>%
-        mutate(slope = c(NA, diff(Yield) / diff(FF)))
-    idx <- which.min(abs(datf01$slope - ref_points$target_slope)) 
-    ref_points$F01 <- datf01$FF[idx]
-
-  return(ref_points)
 }
 
 
@@ -106,4 +82,31 @@ ypr_sensitivity_analysis <- function(H, age, vbparams, M, N0, WaA,sel_delta, A50
     # Calculate reference points 
 
   return(yield_results)
+}
+
+
+# Calculate reference points for each selectivity scenario
+calculate_reference_points <- function(yield_data) {
+# Reference points 
+# Fmax: the fishing mortality rate which produces the maximum yield per recruit.
+# F0.1: the fishing mortality rate corresponding to 10% of the slope of the yield-per-recruit curve at the origin. 
+  ref_points <- yield_data %>%
+    arrange(FF) %>%
+    summarise(
+      Fmax = FF[which.max(Yield)],
+      Ymax = max(Yield),
+      # F0.1 approximation (fishing mortality at 10% of initial slope)
+      initial_slope = (Yield[2] - Yield[1]) / (FF[2] - FF[1]),
+      target_slope = 0.1 * initial_slope,
+      .groups = "drop"
+    )
+  
+    # Find F0.1
+    datf01 <- yield_data %>%
+        arrange(FF) %>%
+        mutate(slope = c(NA, diff(Yield) / diff(FF)))
+    idx <- which.min(abs(datf01$slope - ref_points$target_slope)) 
+    ref_points$F01 <- datf01$FF[idx]
+
+  return(ref_points)
 }
