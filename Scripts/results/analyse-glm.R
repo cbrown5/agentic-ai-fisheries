@@ -79,7 +79,8 @@ ggplot(mean_scores_type) +
                         panel.grid.minor = element_blank()
                     )
 
-
+                    # Save the last plot as a PNG file
+                    ggsave("Shared/Outputs/glm_summary_heatmap.png", width = 10, height = 6, dpi = 300)
 #  Questions for the rubric along with levels of answers. This is used to evaluate the AI's performance on the GLM test case.
 `glm-class-levels.csv`
 
