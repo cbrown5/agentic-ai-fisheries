@@ -99,6 +99,10 @@ We conducted 10 independent replicates for each prompt across both models. This 
 
 After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
 
+Evaluated from two perspectives
+
+An expert user with advanced coding skills can employ highly specific, technically rich prompts that reference particular statistical models, coding frameworks, and data structures, instructing the AI to optimise parameters, debug scripts, or automate simulations (Jansen et al. 2025). An expert would evaluate on criteria such as statistically robustness, accuracy and precision, reproducibility, efficiency, technical detail, scientific rigor, reliability, technical implementation, and quality and completeness of outputs. In contrast, a novice user with limited coding experience would frame prompts in plain-English expecting the AI to recommend analytical pathways and translate technical requirements into accessible workflows. Their evaluation would assess whether the results appear consistent with their expectations, if steps clearly explained and terminology is easy to understand, whether the AI improves accessibility, clarity and reduces technical barriers, and outputs are actionable for decision-making. 
+
 We evaluated each task using multivariate rubrics that: - Quantitatively assessed statistical outputs (e.g., p-values) - Qualitatively scored outputs against predefined categorical metrics
 
 For each task, we calculated two key performance indicators: Aptitude and Reliability [@laban2025llms].
