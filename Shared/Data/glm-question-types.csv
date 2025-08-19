@@ -6,7 +6,7 @@ Diagnostic plots produced,Accuracy,2
 Saved diagnostic plots as PNG files?,Technical Implementation,1
 Interpretation of diagnostics provided?,Completeness,1
 Interpretation of model verification,Accuracy,3
-Created prediction plots?,Technical Implementation,1
+Created prediction plots?,Technical Implementation,3
 Used correct scale for predictive plots?,Completeness,1
 Included confidence intervals?,Completeness,1
 Produced markdown report?,Completeness,1
