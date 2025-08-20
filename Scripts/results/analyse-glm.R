@@ -79,6 +79,78 @@ ggplot(mean_scores_type) +
                         panel.grid.minor = element_blank()
                     )
 
+mean_total_cost <- test_results %>%
+  group_by(Model, Type, folder_name) %>%
+  summarise(`Total cost` = mean(`Total cost`, na.rm = TRUE)) %>%
+    ungroup() %>%
+    group_by(Model, Type) %>%  
+    summarise(
+        `Average` = mean(`Total cost`, na.rm = TRUE), 
+        `Aptitude` = quantile(`Total cost`, 0.9, na.rm = TRUE),
+        `Consistency` = 1 - (quantile(`Total cost`, 0.9, na.rm = TRUE) - quantile(`Total cost`, 0.1, na.rm = TRUE))) %>%
+    ungroup() %>%
+    pivot_longer(cols = c(`Average`, `Aptitude`, `Consistency`), 
+                 names_to = "Metric", 
+                 values_to = "Total_cost")
+
+ggplot(mean_total_cost) + 
+    aes(x = Type, y = Model, fill = Total_cost, label = round(Total_cost, 2)) +
+    geom_tile() +
+    geom_text(size = 3) +
+    facet_grid(Metric~ .) + 
+    scale_fill_gradient(low = "white", high = "green") +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+mean_total_cost <- test_results %>%
+    group_by(Model, Type) %>%
+    summarise(`Total cost` = mean(`Total cost`, na.rm = TRUE)) %>%
+    ungroup()
+
+ggplot(mean_total_cost) +
+    aes(x = `Total cost`, y = Type, fill = Model, label = round(`Total cost`, 2)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(size = 3, position = position_dodge(width = 0.9), vjust = -0.5) +
+    scale_fill_brewer(palette = "Set1") +
+    labs(x = "Total Cost", y = "Type", title = "Average Total Cost by Model and Type") +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )   
+
+mean_total_tokens <- test_results %>%
+    group_by(Model, Type) %>%
+    summarise(
+        `Total tokens in (1000s)` = mean(`Total tokens in (1000s)`, na.rm = TRUE),
+        `Total tokens out (1000s)` = mean(`Total tokens out (1000s)`, na.rm = TRUE)
+    ) %>%
+
+    pivot_longer(cols = c(`Total tokens in (1000s)`, `Total tokens out (1000s)`), 
+                 names_to = "Token_Type", 
+                 values_to = "Total_tokens") %>%
+    ungroup()      
+
+ggplot(mean_total_tokens) +
+    aes(x = Total_tokens, y = Type, fill = Model, label = round(Total_tokens, 2)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(size = 3, position = position_dodge(width = 0.9), vjust = -0.5) +
+    facet_wrap(~ Token_Type) +
+    scale_fill_brewer(palette = "Set1") +
+    labs(x = "Total Tokens (in 1000s)", y = "Type", title = "Average Total Tokens by Model and Type") +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+
 
 #  Questions for the rubric along with levels of answers. This is used to evaluate the AI's performance on the GLM test case.
 `glm-class-levels.csv`
