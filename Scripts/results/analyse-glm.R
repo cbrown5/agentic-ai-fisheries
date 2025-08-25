@@ -198,6 +198,20 @@ ggplot(mean_max_value) +
     ) 
 
 
+mean_score_30 <- test_results %>%
+    group_by(Model, `...30`) %>%
+    summarise(Score = mean(Score, na.rm = TRUE))
+
+ggplot(mean_score_30) + 
+    aes(x = `...30`, y = Model, fill = Score) +
+    geom_tile() +
+    scale_fill_gradient(low = "white", high = "green") +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    ) 
 
     
 
