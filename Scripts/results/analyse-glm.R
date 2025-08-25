@@ -91,10 +91,10 @@ mean_total_cost <- test_results %>%
     ungroup() %>%
     pivot_longer(cols = c(`Average`, `Aptitude`, `Consistency`), 
                  names_to = "Metric", 
-                 values_to = "Total_cost")
+                 values_to = "Total cost")
 
 ggplot(mean_total_cost) + 
-    aes(x = Type, y = Model, fill = Total_cost, label = round(Total_cost, 2)) +
+    aes(x = Type, y = Model, fill = `Total cost`, label = round(`Total cost`, 2)) +
     geom_tile() +
     geom_text(size = 3) +
     facet_grid(Metric~ .) + 
@@ -143,7 +143,7 @@ ggplot(mean_total_tokens) +
     geom_text(size = 3, position = position_dodge(width = 0.9), vjust = -0.5) +
     facet_wrap(Token_Type~ .) +
     scale_fill_brewer(palette = "Set1") +
-    labs(x = "Total Tokens (in 1000s)", y = "Type", title = "Average Total Tokens by Model and Type") +
+    labs(x = "Total tokens (in 1000s)", y = "Type", title = "Average Total Tokens by Model and Type") +
     theme(
         axis.text.x = element_text(angle = 45, hjust = 1),
         panel.background = element_blank(),
@@ -151,7 +151,7 @@ ggplot(mean_total_tokens) +
         panel.grid.minor = element_blank()
     )
 
-mean_total_tokens <- test_results %>%
+mean_total_tokens_types <- test_results %>%
     group_by(Model) %>%
     summarise(
         `Total tokens in (1000s)` = mean(`Total tokens in (1000s)`, na.rm = TRUE),
@@ -159,7 +159,7 @@ mean_total_tokens <- test_results %>%
     ) %>%
     ungroup()
 
-mean_total_tokens %>%
+mean_total_tokens_types %>%
     pivot_longer(
         cols = c(`Total tokens in (1000s)`, `Total tokens out (1000s)`), 
         names_to = "Token_type", 
@@ -182,46 +182,22 @@ mean_total_tokens %>%
         panel.grid.minor = element_blank()
       )
 
-# mean_p-values <- test_results %>%
-#     group_by(Model, Question) %>%
-#     summarise(`p-values accurate?` = mean(`p-values accurate?`, na.rm = TRUE),
-#     `Correct p-value included in report` = mean(`Correct p-value included in report`, na.rm = TRUE)) %>%
-    
-    
-#     ggplot(mean_p-values) + 
-#     aes(x = Question, y = Model, fill = `p-values accurate?`, label = round(`p-values accurate?`, 2)) +
-#     geom_tile() +
-#     geom_text(size = 3) +
-#     scale_fill_gradient(low = "white", high = "green") +
-#     theme(
-#         axis.text.x = element_text(angle = 45, hjust = 1),
-#         panel.background = element_blank(),
-#         panel.grid.major = element_blank(),
-#         panel.grid.minor = element_blank()
-#     )
-
- mean_tokens <- test_results %>%
+mean_max_value <- test_results %>%
     group_by(Model, Question, Type) %>%
-    summarise(`Total tokens in (1000s)` = mean(`Total tokens in (1000s)`, na.rm = TRUE),
-              `Total tokens out (1000s)` = mean(`Total tokens out (1000s)`, na.rm = TRUE)) %>%
-    ungroup() %>%
-    group_by(Model, Question) %>%
-    pivot_longer(cols = c(`Total tokens in (1000s)`, `Total tokens out (1000s)`), 
-                 names_to = "Token_Type", 
-                 values_to = "Total_tokens") %>%
+    summarise(`Max value` = mean(`Max value`, na.rm = TRUE))
 
-    ggplot(mean_tokens) +
-    (aes(x = Question, y = Model, fill = Total_tokens, label = round(Total_tokens, 2))) +
+ggplot(mean_max_value) + 
+    aes(x = Question, y = `Max mean_max_value`, fill = `Max_value`) +
     geom_tile() +
-    geom_text(size = 3) +
-    facet_wrap(Token_Type~ .) +
     scale_fill_gradient(low = "white", high = "green") +
     theme(
         axis.text.x = element_text(angle = 45, hjust = 1),
         panel.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()
-    )
+    ) 
+
+
 
 
     
