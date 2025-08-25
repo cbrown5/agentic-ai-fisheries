@@ -78,8 +78,7 @@ ggplot(mean_scores_type) +
                         panel.grid.major = element_blank(),
                         panel.grid.minor = element_blank()
                     )
-
-<<<<<<< HEAD
+# Mean total cost by type and model
 mean_total_cost <- test_results %>%
   group_by(Model, Type, folder_name) %>%
   summarise(`Total cost` = mean(`Total cost`, na.rm = TRUE)) %>%
@@ -125,6 +124,7 @@ ggplot(mean_total_cost) +
         panel.grid.minor = element_blank()
     )   
 
+# Mean total tokens in and out by type and model
 mean_total_tokens <- test_results %>%
     group_by(Model, Type) %>%
     summarise(
@@ -141,7 +141,7 @@ ggplot(mean_total_tokens) +
     aes(x = Total_tokens, y = Type, fill = Model, label = round(Total_tokens, 2)) +
     geom_bar(stat = "identity", position = "dodge") +
     geom_text(size = 3, position = position_dodge(width = 0.9), vjust = -0.5) +
-    facet_wrap(~ Token_Type) +
+    facet_wrap(Token_Type~ .) +
     scale_fill_brewer(palette = "Set1") +
     labs(x = "Total Tokens (in 1000s)", y = "Type", title = "Average Total Tokens by Model and Type") +
     theme(
@@ -151,12 +151,84 @@ ggplot(mean_total_tokens) +
         panel.grid.minor = element_blank()
     )
 
+mean_total_tokens <- test_results %>%
+    group_by(Model) %>%
+    summarise(
+        `Total tokens in (1000s)` = mean(`Total tokens in (1000s)`, na.rm = TRUE),
+        `Total tokens out (1000s)` = mean(`Total tokens out (1000s)`, na.rm = TRUE)
+    ) %>%
+    ungroup()
+
+mean_total_tokens %>%
+    pivot_longer(
+        cols = c(`Total tokens in (1000s)`, `Total tokens out (1000s)`), 
+        names_to = "Token_type", 
+        values_to = "Total_tokens"
+      ) %>%
+    
+      ggplot(aes(x = Model, y = Total_tokens, fill = Token_type, label = round(Total_tokens, 2))) +
+      geom_bar(stat = "identity", position = "dodge") +
+      labs(
+        x = "Total tokens",
+        y = "Total cost",
+        title = "Total Cost vs Total Tokens by Model and Token Type"
+      ) +
+      scale_fill_brewer(palette = "Set1") +
+      labs(x = "Model", y = "Total tokens", fill = "Token type", title = "Average Total Tokens by Model") +
+      theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+# mean_p-values <- test_results %>%
+#     group_by(Model, Question) %>%
+#     summarise(`p-values accurate?` = mean(`p-values accurate?`, na.rm = TRUE),
+#     `Correct p-value included in report` = mean(`Correct p-value included in report`, na.rm = TRUE)) %>%
+    
+    
+#     ggplot(mean_p-values) + 
+#     aes(x = Question, y = Model, fill = `p-values accurate?`, label = round(`p-values accurate?`, 2)) +
+#     geom_tile() +
+#     geom_text(size = 3) +
+#     scale_fill_gradient(low = "white", high = "green") +
+#     theme(
+#         axis.text.x = element_text(angle = 45, hjust = 1),
+#         panel.background = element_blank(),
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank()
+#     )
+
+ mean_tokens <- test_results %>%
+    group_by(Model, Question, Type) %>%
+    summarise(`Total tokens in (1000s)` = mean(`Total tokens in (1000s)`, na.rm = TRUE),
+              `Total tokens out (1000s)` = mean(`Total tokens out (1000s)`, na.rm = TRUE)) %>%
+    ungroup() %>%
+    group_by(Model, Question) %>%
+    pivot_longer(cols = c(`Total tokens in (1000s)`, `Total tokens out (1000s)`), 
+                 names_to = "Token_Type", 
+                 values_to = "Total_tokens") %>%
+
+    ggplot(mean_tokens) +
+    (aes(x = Question, y = Model, fill = Total_tokens, label = round(Total_tokens, 2))) +
+    geom_tile() +
+    geom_text(size = 3) +
+    facet_wrap(Token_Type~ .) +
+    scale_fill_gradient(low = "white", high = "green") +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
 
 
-=======
-                    # Save the last plot as a PNG file
-                    ggsave("Shared/Outputs/glm_summary_heatmap.png", width = 10, height = 6, dpi = 300)
->>>>>>> 67d079efc84476163409646d1ef31806466bb64f
+    
+
+
+
+
 #  Questions for the rubric along with levels of answers. This is used to evaluate the AI's performance on the GLM test case.
 `glm-class-levels.csv`
 
