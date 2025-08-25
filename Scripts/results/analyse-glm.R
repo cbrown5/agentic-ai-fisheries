@@ -40,6 +40,7 @@ mean_scores <- test_results %>%
     group_by(Model, Question, Type) %>%
     summarise(Score_norm = mean(Score_norm, na.rm = TRUE))
 
+## PLOT 3A
 ggplot(mean_scores) + 
     aes(x = Question, y = Model, fill = Score_norm) +
     geom_tile() +
@@ -65,7 +66,7 @@ mean_scores_type <- test_results %>%
                  names_to = "Metric", 
                  values_to = "Score_norm") 
                  
-                 
+# PLOT 3B
 ggplot(mean_scores_type) + 
                     aes(x = Type, y = Model, fill = Score_norm, label = round(Score_norm, 2)) +
                     geom_tile() +

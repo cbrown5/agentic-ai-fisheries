@@ -41,43 +41,29 @@ The development of detailed specification sheets—long, precise instruction set
 
 We test whether AI agents can transform specification sheets into reliable fisheries models by examining three increasingly complex tasks: (1) von Bertalanffy growth curve fitting, (2) generalized linear modeling of fish-habitat relationships, and (3) yield per recruit analysis. We explore two prompting strategies: one representing an expert user providing implementation details, and another simulating a user with minimal coding knowledge.
 
+Evaluations of agent-LLM pairs in other fields suggest we should be successful. However, fisheries science may present a special challenge to agents, because of the relatively limited amount of training data available to LLMs relative to topics such as game programing. We are also testing the agents in the R program, which is popular with environmental statisticians, but for which there is much more limited training code available than common languages like C. 
+
 Our study aims to evaluate the aptitude and reliability of AI agents in generating fisheries models, addressing critical questions about their potential to democratize technical expertise while maintaining scientific rigor.
 
 ## 2. Methods
 
 ### Overview
 
-Our methodological approach centered on developing comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors.
+We developed comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors. TODO write overview summary
 
 ### AI Agents and Large Language Models: Technical Background
 
-#### Large Language Model Fundamentals
+Large language models (LLMs) are complex neural networks trained on large bodies of text and images and able to generate novel text. They predict what comes next when given text as input, also called prompting. The unit of prediction is a token, which is a common sequence of letters. The LLMs most people are familiar with are calibrated to be assistants, such that they respond seamlessly to questions. 
 
-Large language models (LLMs) are advanced neural networks designed to generate human-like responses through next-token prediction. These models are trained on vast internet-sourced datasets, enabling them to perform complex reasoning tasks, including mathematical calculations, logical reasoning, and computer code generation.
+LLM's have a finite 'memory' for text they receive such that they can create coherent sentences, phrases and whole documents that are coherent with complex prompts [Cite attention is all your need paper]. This memory, called the context window, is orders of magnitude larger than the short queries that are the most common prompts on commercial web platforms. The best coding models at writing have context windows of 200,000 tokens, equivalent to several PhD theses worth of text, larger models have context windows of 1M tokens plus. LLM training data often includes reasoning and computer code, so LLMs can also exhibit rational reasoning and the ability to implement that reasoning in various programming languages. The reasoning ability and large context windows give them the ability to read substantial documents, reason about complex scientific questions and then create analyses to test ideas. Some LLMs are also multi-modal and can take images as inputs, so can accurately perform tasks such as interpretation of scientific figures. 
 
-#### AI Agent Architecture
+Generative AI agents are software systems that can operate autonomously to complete a task. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs. Agents embed one or more LLMs within a software system that includes feedback loops among LLM inputs, LLM outputs and other software tools (Figure 1). These feedback loops replace some parts of workflows traditionally performed by humans. For instance, a simple agent workflow could look like: (1) a human requests an analysis is complete; (2) the agent passes the query to an LLM; (3) the LLM responds with code; (4) the agent passes the code to the R program and the code is run; (5) the agent passes the results of the R script back to the LLM as the next input... And so on, until the task is stopped manually or by by trigger points built into the agent. 
 
-An AI agent represents a sophisticated software framework that leverages LLMs through a structured interaction protocol. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs
+Agent software is made possible by a framework for LLMs to communicate to software tools: the Model Context Protocol. This is a set of rules that tells an LLM what tools are available to it, what rules apply to those tools (such as file type restrictions) and how to structure its response if it wants a tool to be used. When the agent software parses each LLM response it is looking for tool calls, which it then passes into the tool. 
 
-#### Model Context Protocol
+A tool can be any software locally on the user's computer or hosted remotely on the cloud, so long as that software can be interacted via code (an application program interface). Simple agents have tools for reading files, writing to files and running terminal commands. This enables them to read a file's content, then updated it such as adding new code. With terminal commands they can do tasks such as search directories, create files, delete files and run applications such as R scripts. More sophisticated tools include the ability to connect to and navigate in web browsers, conduct web searches and access remotely hosted databases. 
 
-The Model Context Protocol (MCP) provides a critical framework for guiding LLM interactions. When presented with a task, an AI agent: 1. Receives a comprehensive initial instruction set 2. Analyzes the task's requirements 3. Determines appropriate response strategies (e.g., explanation, code generation, clarification request) 4. Executes specialized tools for specific actions
-
-#### Advantages and Challenges
-
-**Strengths:** - Autonomous workflow generation - Minimal human intervention required - Ability to self-correct and adapt
-
-**Potential Limitations:** - Risk of "context poisoning" (diverging from intended task) - Potential generation of logically flawed solutions - Variability in output consistency
-
-**Mitigation Strategies:** - Developing detailed specification sheets - Implementing rigorous prompting techniques - Conducting multiple replicate runs to assess reliability
-
-Our study aims to systematically evaluate these AI agents' performance in complex scientific modeling tasks, addressing both their transformative potential and inherent challenges.
-
-#### Specification Sheet Development
-
-We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
-
-The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
+The advent of agents is leading to longer and more complex prompts, which have been called 'specifications' [cite AI talk on youtube]. These specifications describe a task with detailed instructions. Our aim was to develop specifications for common fisheries modelling tasks and then test a leading agent software for its ability to complete those tasks. 
 
 #### Experimental Design
 
@@ -89,17 +75,37 @@ We implemented a rigorous experimental design to assess AI agent performance:
 
 3.  **Comprehensive Evaluation**: Each task was assessed using multivariate rubrics that evaluated both quantitative outputs (e.g., statistical significance) and qualitative performance through categorical outcome metrics.
 
+### Agent set-up
+
+### Specification Sheet Development
+
+We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
+
+The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
+
+We drew best practice prompting strategies to write these instructions [@brownLLMecology].
+
+
 #### Technical Implementation
+
+
+There are a large number of LLMs available that can be mixed and matched with a growing number of agent software platforms. Here we test the Roo Code agent software. At the time of writing Roo Code was the number two ranked software by its user base. We picked this software because it allows greater customisation than the number one ranked software (Cline), so could be more useful for bespoke scientific applications. 
+
+For LLMs we chose to test Claude Sonnet 4.0 and Kimi K2, the latest versions of these models available at the time of the study. Claude Sonnet 4.0 is well recognized as an industry leader for programming and reasoning tasks. Roo Code has been extensively developed with Sonnet in mind, so is likely also optimized for Sonnet's quirks. Other popular choices are the openAI models (e.g. GPT 5.0), but we have perform slightly less consistently for R code than Sonnet. 
+
+Kimi K2 is a much cheaper alternative to Sonnet, but which has also shown industry leading coding abilities. Kimi K2 was built with tool-use in mind, so we tested it here to see if it can obtain similar results at a lower cost. 
+
+
 
 We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
 
 Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval.
 
-We drew best practice prompting strategies to write these instructions [@brownLLMecology].
-
 We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms]. Quarantined to prevent sharing of prompt caches.
 
 After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
+
+### Evaluating the results 
 
 Evaluated from two perspectives
 
@@ -125,7 +131,9 @@ $$
 
 where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
 
-### Von Bertalanffy Growth Model Test Case
+### Case-studies 
+
+#### Von Bertalanffy Growth Model Test Case
 
 #### Rationale and Significance
 
@@ -173,11 +181,17 @@ Add number for how often kimi stuffed up the 'size at age 5' name in the databas
 
 Richard doing the plot
 
-Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present.
+Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present. 
+
+**Figure 3** RICHARD to insert figure 3 here as png file (600dpi). See analyse-glm.R. I've labelled the plots I want PLOT 3A and PLOT 3B. For 3B please order the x-axis labels 'Accuracy', 'Completness', 'Technical Implementation', 'Bonus points'. Please also group the labels in 3A by the same categories (so show the label for each individual question, but also show a heading label for each of the top level categories of Accuracy, Completenss etc...). Then improve on colour scale and fix up labels so they are ready for publication. 
 
 ### YPR
 
-Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
+Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish]. 
+
+### Cost and accuracy 
+
+Show grouped results here on cost and overal accuracy across all case-studies? Facet by case-study to plot: cost (x-axis) accuracy (y-axis) LLM (colour).  
 
 ## 4. Discussion
 
