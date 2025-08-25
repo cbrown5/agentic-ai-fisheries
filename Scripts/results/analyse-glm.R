@@ -187,7 +187,7 @@ mean_max_value <- test_results %>%
     summarise(`Max value` = mean(`Max value`, na.rm = TRUE))
 
 ggplot(mean_max_value) + 
-    aes(x = Question, y = `Max mean_max_value`, fill = `Max_value`) +
+    aes(x = Type, y = Question, fill = `Max value`) +
     geom_tile() +
     scale_fill_gradient(low = "white", high = "green") +
     theme(
