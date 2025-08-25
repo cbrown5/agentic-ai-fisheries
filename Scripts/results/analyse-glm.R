@@ -199,9 +199,7 @@ ggplot(mean_max_value) +
 
 
 
-
     
-
 
 
 
