@@ -36,21 +36,38 @@ test_results <- test_case_results %>%
 
 names(test_results)
 
+
+# Set the desired order for Type
 mean_scores <- test_results %>%
     group_by(Model, Question, Type) %>%
     summarise(Score_norm = mean(Score_norm, na.rm = TRUE))
+# mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical implementation", "Bonus points"))
 
 ## PLOT 3A
-ggplot(mean_scores) + 
+
+fig3a <- ggplot(mean_scores) + 
     aes(x = Question, y = Model, fill = Score_norm) +
     geom_tile() +
-    scale_fill_gradient(low = "white", high = "green") +
+    facet_grid(.~ Type, scales = "free_x", space = "free_x") +
+    scale_fill_gradient(low = "yellow", high = "purple") +
     theme(
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank()
+    axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 11),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    strip.text = element_text(size = 9),
+    panel.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
     ) 
+
+fig3a
+
+# Save the above plot as fig3
+ggsave(fig3a, filename = "Shared/Outputs/figure-3a.png", dpi = 600)
+
 
 mean_scores_type <- test_results %>%
     group_by(Model, Type, folder_name) %>%
@@ -65,20 +82,35 @@ mean_scores_type <- test_results %>%
     pivot_longer(cols = c(Average, Aptitude, Consistency), 
                  names_to = "Metric", 
                  values_to = "Score_norm") 
-                 
+          
 # PLOT 3B
-ggplot(mean_scores_type) + 
+
+
+fig3b <- ggplot(mean_scores_type) + 
                     aes(x = Type, y = Model, fill = Score_norm, label = round(Score_norm, 2)) +
                     geom_tile() +
                     geom_text(size = 3) +
                     facet_grid(Metric~ .) +
-                    scale_fill_gradient(low = "white", high = "green") +
+                    scale_fill_gradient(low = "darkgray", high = "lightgreen") +
                     theme(
-                        axis.text.x = element_text(angle = 45, hjust = 1),
+                        axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
+                        axis.text.y = element_text(size = 11),
+                        axis.title.x = element_text(size = 12),
+                        axis.title.y = element_text(size = 12),
+                        legend.title = element_text(size = 12),
+                        legend.text = element_text(size = 11),
+                        strip.text = element_text(size = 11),
                         panel.background = element_blank(),
                         panel.grid.major = element_blank(),
                         panel.grid.minor = element_blank()
                     )
+
+fig3b
+
+# Save the above plot as fig3
+ggsave(fig3b, filename = "Shared/Outputs/figure-3b.png", dpi = 600)
+
+
 # Mean total cost by type and model
 mean_total_cost <- test_results %>%
   group_by(Model, Type, folder_name) %>%
@@ -106,6 +138,10 @@ ggplot(mean_total_cost) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()
     )
+
+# Save the above plot as figure 3 and add to manuscript.qmd
+#ggsave("Shared/Outputs/figure-3.png", dpi = 600) 
+
 
 mean_total_cost <- test_results %>%
     group_by(Model, Type) %>%
