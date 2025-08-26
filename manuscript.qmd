@@ -183,7 +183,9 @@ Richard doing the plot
 
 Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present. 
 
-![Model's question score based on accuracy, bonus points, completeness and technical impelementation]("Shared/Outputs/figure-3a.png"){#fig3a}
+![Model's question score based on accuracy, completeness, technical impelementation, and bonus points]("Shared/Outputs/figure-3a.png"){#fig3a}
+
+![ Evaluation of the model's aptitude, average performance, and consistency, including scores for accuracy, completeness, technical implementation, and bonus points]("Shared/Outputs/figure-3b.png"){#fig3b}
 
 **Figure 3** RICHARD to insert figure 3 here as png file (600dpi). See analyse-glm.R. I've labelled the plots I want PLOT 3A and PLOT 3B. For 3B please order the x-axis labels 'Accuracy', 'Completness', 'Technical Implementation', 'Bonus points'. Please also group the labels in 3A by the same categories (so show the label for each individual question, but also show a heading label for each of the top level categories of Accuracy, Completenss etc...). Then improve on colour scale and fix up labels so they are ready for publication. 
 
