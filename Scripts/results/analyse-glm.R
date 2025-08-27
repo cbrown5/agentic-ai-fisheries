@@ -2,6 +2,7 @@
 # CJ Brown, R Takyi 2025-08-16 
 
 library(tidyverse)
+
 library(readr)
 library(patchwork)
 
@@ -45,6 +46,8 @@ mean_scores <- test_results %>%
 
 mean_scores$Type <- factor(mean_scores$Type, 
     levels = c("Interpretation", "Completeness", "Technical Implementation", "Bonus Points"))
+    summarise(Score_norm = mean(Score_norm, na.rm = TRUE))
+mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical Implementation", "Bonus Points"))
 
 ## PLOT 3A
 # Show all RColorBrewer palettes
