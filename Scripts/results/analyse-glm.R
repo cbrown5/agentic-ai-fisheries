@@ -41,7 +41,7 @@ names(test_results)
 mean_scores <- test_results %>%
     group_by(Model, Question, Type) %>%
     summarise(Score_norm = mean(Score_norm, na.rm = TRUE))
-# mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical implementation", "Bonus points"))
+mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical implementation", "Bonus points"))
 
 ## PLOT 3A
 
