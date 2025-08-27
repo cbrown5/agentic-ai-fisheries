@@ -4,6 +4,7 @@
 library(tidyverse)
 library(readr)
 library(patchwork)
+
 class_levels <- read_csv("Shared/Data/glm-class-levels.csv")
 question_types <- read_csv("Shared/Data/glm-question-types.csv")
 
@@ -46,13 +47,16 @@ mean_scores$Type <- factor(mean_scores$Type,
     levels = c("Interpretation", "Completeness", "Technical Implementation", "Bonus Points"))
 
 ## PLOT 3A
+# Show all RColorBrewer palettes
+library(RColorBrewer)
+display.brewer.all()
 
 fig3a <- ggplot(mean_scores) + 
     aes(x = Question, y = Model, fill = Score_norm) +
     geom_tile() +
     labs(x = "", y = "") + 
     facet_grid(.~ Type, scales = "free_x", space = "free_x") +
-    scale_fill_distiller("Accuracy \n score", palette = "RdBu", direction = 1) +
+    scale_fill_distiller("Accuracy \n score", palette = "Greens", direction = 1) +
     theme(
     axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
     axis.text.y = element_text(size = 11),
@@ -109,7 +113,7 @@ fig3b <- ggplot(mean_scores_type) +
                         panel.grid.major = element_blank(),
                         panel.grid.minor = element_blank()
                     )
-
+fig3b
 glm_fig <- (fig3a / fig3b) + 
     plot_annotation(tag_levels = 'a', tag_prefix = "(", 
         tag_suffix = ")") & 
@@ -117,6 +121,11 @@ glm_fig <- (fig3a / fig3b) +
 glm_fig
 # Save the above plot as fig3
 ggsave(fig3b, filename = "Shared/Outputs/figure-3b.png", dpi = 600)
+
+#
+# Cost plots 
+#
+
 
 
 # Mean total cost by type and model
@@ -134,22 +143,8 @@ mean_total_cost <- test_results %>%
                  names_to = "Metric", 
                  values_to = "Total cost")
 
-ggplot(mean_total_cost) + 
-    aes(x = Type, y = Model, fill = `Total cost`, label = round(`Total cost`, 2)) +
-    geom_tile() +
-    geom_text(size = 3) +
-    facet_grid(Metric~ .) + 
-    scale_fill_gradient(low = "white", high = "green") +
-    theme(
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank()
-    )
-
 # Save the above plot as figure 3 and add to manuscript.qmd
 #ggsave("Shared/Outputs/figure-3.png", dpi = 600) 
-
 
 mean_total_cost <- test_results %>%
     group_by(Model, Type) %>%
