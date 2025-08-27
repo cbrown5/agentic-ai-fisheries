@@ -43,7 +43,9 @@ mean_scores <- test_results %>%
     group_by(Model, Question, Type) %>%
     summarise(Score_norm = mean(Score_norm, na.rm = TRUE)) 
 
-mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical Implementation", "Bonus Points"))
+mean_scores$Type <- factor(mean_scores$Type, 
+    levels = c("Interpretation", "Completeness", "Technical Implementation", "Bonus Points"))
+    
 
 ## PLOT 3A
 # Show all RColorBrewer palettes
@@ -55,7 +57,7 @@ fig3a <- ggplot(mean_scores) +
     geom_tile() +
     labs(x = "", y = "") + 
     facet_grid(.~ Type, scales = "free_x", space = "free_x") +
-    scale_fill_distiller("Accuracy \n score", palette = "Set2", direction = 1) +
+    scale_fill_distiller("Accuracy \n score", palette = "Accent", direction = 1) +
     theme(
     axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
     axis.text.y = element_text(size = 11),
@@ -97,7 +99,7 @@ fig3b <- ggplot(mean_scores_type) +
                     geom_tile() +
                     geom_text(size = 3) +
                     facet_grid(Metric~ .) +
-                    scale_fill_distiller("Score", palette = "Purples", direction = 1) +
+                    scale_fill_distiller("Score", palette = "Paired", direction = 1) +
                     ylab("") + 
                     xlab("") + 
                     theme(
@@ -119,8 +121,7 @@ glm_fig <- (fig3a / fig3b) +
     theme(plot.tag = element_text(size = 16))
 glm_fig
 # Save the above plot as fig3
-ggsave(fig3b/fig3b, filename = "Shared/Outputs/figure-3ab.png", dpi = 600)
-
+ggsave(glm_fig, filename = "Shared/Outputs/figure-3.png", dpi = 600)
 #
 # Cost plots 
 #
