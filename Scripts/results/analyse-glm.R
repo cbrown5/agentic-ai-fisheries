@@ -1,12 +1,12 @@
 # Produce the figures for the GLM test-case
-# CJ Brown 2025-08-16 
-
-# Richard to make plots here. Below are the files to use. 
+# CJ Brown, R Takyi 2025-08-16 
 
 library(tidyverse)
 library(readr)
+library(patchwork)
 class_levels <- read_csv("Shared/Data/glm-class-levels.csv")
 question_types <- read_csv("Shared/Data/glm-question-types.csv")
+
 test_case_results <- read_csv("Shared/Data/glm-test-case-results.csv")
 
 
@@ -40,16 +40,19 @@ names(test_results)
 # Set the desired order for Type
 mean_scores <- test_results %>%
     group_by(Model, Question, Type) %>%
-    summarise(Score_norm = mean(Score_norm, na.rm = TRUE))
-# mean_scores$Type <- factor(mean_scores$Type, levels = c("Accuracy", "Completeness", "Technical implementation", "Bonus points"))
+    summarise(Score_norm = mean(Score_norm, na.rm = TRUE)) 
+
+mean_scores$Type <- factor(mean_scores$Type, 
+    levels = c("Interpretation", "Completeness", "Technical Implementation", "Bonus Points"))
 
 ## PLOT 3A
 
 fig3a <- ggplot(mean_scores) + 
     aes(x = Question, y = Model, fill = Score_norm) +
     geom_tile() +
+    labs(x = "", y = "") + 
     facet_grid(.~ Type, scales = "free_x", space = "free_x") +
-    scale_fill_gradient(low = "yellow", high = "purple") +
+    scale_fill_distiller("Accuracy \n score", palette = "RdBu", direction = 1) +
     theme(
     axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
     axis.text.y = element_text(size = 11),
@@ -65,9 +68,6 @@ fig3a <- ggplot(mean_scores) +
 
 fig3a
 
-# Save the above plot as fig3
-ggsave(fig3a, filename = "Shared/Outputs/figure-3a.png", dpi = 600)
-
 
 mean_scores_type <- test_results %>%
     group_by(Model, Type, folder_name) %>%
@@ -75,14 +75,17 @@ mean_scores_type <- test_results %>%
     ungroup() %>% 
     group_by(Model, Type) %>%
     summarise(
-        Average = mean(Score_norm, na.rm = TRUE), 
+        Accuracy = mean(Score_norm, na.rm = TRUE), 
         Aptitude = quantile(Score_norm, 0.9, na.rm = TRUE),
         Consistency = 1 - (quantile(Score_norm, 0.9, na.rm = TRUE) - quantile(Score_norm, 0.1, na.rm = TRUE))) %>%
     ungroup() %>%
-    pivot_longer(cols = c(Average, Aptitude, Consistency), 
+    pivot_longer(cols = c(Accuracy, Aptitude, Consistency), 
                  names_to = "Metric", 
                  values_to = "Score_norm") 
           
+mean_scores_type$Type <- factor(mean_scores_type$Type, 
+    levels = c("Interpretation", "Completeness", "Technical Implementation", "Bonus Points"))
+
 # PLOT 3B
 
 
@@ -91,7 +94,9 @@ fig3b <- ggplot(mean_scores_type) +
                     geom_tile() +
                     geom_text(size = 3) +
                     facet_grid(Metric~ .) +
-                    scale_fill_gradient(low = "darkgray", high = "lightgreen") +
+                    scale_fill_distiller("Score", palette = "Purples", direction = 1) +
+                    ylab("") + 
+                    xlab("") + 
                     theme(
                         axis.text.x = element_text(size = 11, angle = 45, hjust = 1),
                         axis.text.y = element_text(size = 11),
@@ -105,8 +110,11 @@ fig3b <- ggplot(mean_scores_type) +
                         panel.grid.minor = element_blank()
                     )
 
-fig3b
-
+glm_fig <- (fig3a / fig3b) + 
+    plot_annotation(tag_levels = 'a', tag_prefix = "(", 
+        tag_suffix = ")") & 
+    theme(plot.tag = element_text(size = 16))
+glm_fig
 # Save the above plot as fig3
 ggsave(fig3b, filename = "Shared/Outputs/figure-3b.png", dpi = 600)
 

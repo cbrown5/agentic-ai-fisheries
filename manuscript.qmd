@@ -179,7 +179,6 @@ Add number for how often kimi stuffed up the 'size at age 5' name in the databas
 
 ### GLM
 
-Richard doing the plot
 
 Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present. 
 
