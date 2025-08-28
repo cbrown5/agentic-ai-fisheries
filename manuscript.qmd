@@ -23,49 +23,53 @@ Journal: Fish and Fisheries
 
 ## 1. Introduction
 
-Fisheries modeling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (insert ref to stock assessment). Fish ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. ... stuff abotu open code in modelling... The limited number of trained modelers further constrains fisheries stock assessments, compounding issues with constraints on data availability.
+Fisheries modelling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (Punt et al. 2025). Fisheries science ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. Quantitative environmental scientists rarely have formal training in programming, so creating and maintaining computer code is a challenge [Leigha find ref, see below for ideas, ]. Creating code that other people can easily understand and use is an even greater challenge. Thus, there are a limited number of trained modelers that also understand the complexities of fishereries sciences, creating a bottleneck for fisheries stock assessments and compounding issues with constraints on data availability [leigha ref here].
 
-So we've got two p, overall perspective opportunity AI. Maybe we'll just cite that in the general sense that there's like this. opportunity for AI to prove access to cody and help us with all these tasks, Yep. And then, yeah, like that those past ones haven't mechized There's agents and they're probably understated. Actually, the opportunities and the level of transformation, then I'll the Campbell paper I think is one of the really good ones from those students who had the most perceptive. So that paper I can mention that students also find the issue of context poisoning, challenging to work with. And talk about just how it helps set the context of blood. Yeah, how they find you have to be an expert user, an expert statistician to get really good responses out, and then that kind of helps it the context for my paper of like how well can expert d station use these methods. And I won't think I'll probably would deal anything other ones in that review special issue
+Potential refs: 
+I think there was a paper on graduate shcool training in R in the USA? 
+(Jenkins et al. 2023; Popovic et al. 2024)
+Jenkins, Gareth B, Andrew P Beckerman, Céline Bellard, Ana Benı́tez-López, Aaron M Ellison, Christopher G Foote, Andrew L Hufton, et al. 2023. “Reproducibility in Ecology and Evolution: Minimum Standards for Data and Code.” Ecology and Evolution 13 (5): e9961.
+Popovic, Gordana, Tanya Jane Mason, Szymon Marian Drobniak, Tiago André Marques, Joanne Potts, Rocío Joo, Res Altwegg, et al. 2024. “Four Principles for Improved Statistical Ecology.” Methods in Ecology and Evolution 15 (2): 266–81. https://doi.org/https://doi.org/10.1111/2041-210X.14270.
 
-Fisheries m....
+@scheepens2024
 
-Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex ecological and fisheries modeling workflows[@cooper2024]. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry [@campbell2024; @cooper2024]. However, critical questions remain about the reliability and quality of AI-generated code. Begginers to statistics have trouble using the software effecitvely, in fact it often takes an expert to know what to ask to get a good high quality response [@campbell2024].
+Cooper, N., Clark, A.T., Lecomte, N., Qiao, H. and Ellison, A.M., 2024. Harnessing large language models for coding, teaching and inclusion to empower research in ecology and evolution. Methods in Ecology and Evolution, 15(10), pp.1757-1763.
 
-Previous tests, primarily in the R language, have revealed significant challenges. While LLMs can generate executable code, less than 50% of generated scripts were technically accurate [@jansen2025leveraging]. Notably, code execution rates improved when AI models could self-correct [@zhu2024large]. Key insights have emerged about effective AI interaction:
+Punt, A.E., Dichmont, C.M., Dowling, N.A., Deng, R.A., Pascoe, S., van Putten, I., Bessell-Browne, P., Burch, P., Burnell, O., Chick, R.C. and de Lestang, S., 2025. Identifying capacity limitations and training needs using a stock assessment game. *Fisheries Research*, *284*, p.107319.
 
--   Contextual information is crucial for making informed statistical choices
--   Providing reference code and statistical approaches guides AI agents
--   One-shot prompting with comprehensive examples often yields more reliable results than multi-turn conversations [@laban2025llms]
+Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modelling workflows. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry. LLM-generated code is produced quickly, cheaply and speeds up routine tasks (Cooper et al. 2024). [leigha fill out with examples from other fields, e.g. Scheepens?] However, questions remain about the reliability and quality of this AI-generated code (Cooper et al. 2024) - [Leigha elaborte on what these questions are]. To effectively use LLM for coding, users need to be familiar enough with the programming language to detect anomalies in the AI outputs (Cooper et al. 2024).
 
-The development of detailed specification sheets—long, precise instruction sets written in plain English—represents a promising approach to improving AI-generated analysis. These specifications can articulate analysis requirements clearly, making them accessible to both expert and novice users.
+Previous tests, primarily in the R language, have revealed significant challenges for the application of generative AI to statistics. While LLMs can generate executable code, less than 50% of generated scripts were technically accurate [@jansen2025leveraging]. Notably, code execution rates improved when AI models could self-correct [@zhu2024large]. Key insights have emerged about effective AI interaction: Contextual information is crucial for making informed statistical choices Providing reference code and statistical approaches guides AI agents One-shot prompting with comprehensive examples often yields more reliable results than multi-turn conversations [@laban2025llms]. Users must be skillfull in writing effective prompts—instructions or inputs given to the LLM, and evaluating the responses (Cooper et al. 2024). The development of detailed specification sheets—long, precise instruction sets (i.e. prompts) written in plain English—represents a promising approach to improving AI-generated analysis. These specifications can articulate analysis requirements clearly, making them accessible to both expert and novice users.
 
-We test whether AI agents can transform specification sheets into reliable fisheries models by examining three increasingly complex tasks: (1) von Bertalanffy growth curve fitting, (2) generalized linear modeling of fish-habitat relationships, and (3) yield per recruit analysis. We explore two prompting strategies: one representing an expert user providing implementation details, and another simulating a user with minimal coding knowledge.
-
-Evaluations of agent-LLM pairs in other fields suggest we should be successful. However, fisheries science may present a special challenge to agents, because of the relatively limited amount of training data available to LLMs relative to topics such as game programing. We are also testing the agents in the R program, which is popular with environmental statisticians, but for which there is much more limited training code available than common languages like C. 
-
-Our study aims to evaluate the aptitude and reliability of AI agents in generating fisheries models, addressing critical questions about their potential to democratize technical expertise while maintaining scientific rigor.
+We test whether AI agents can transform specification sheets into reliable fisheries models by examining three increasingly complex tasks: (1) von Bertalanffy growth curve fitting, (2) generalized linear modeling of fish-habitat relationships, and (3) yield per recruit analysis. We conduct detailed analysis of the generated responses, in order to better understand the strengthts and limitations of the AI. Evaluations of agent-LLM pairs in other fields suggest we should be successful. However, fisheries science may present a special challenge to agents, because of the relatively limited amount of training data available to LLMs relative to topics such as game programing. We are also testing the agents in the R program, which is popular with environmental statisticians, but for which there is much more limited training code available than common languages like C.
 
 ## 2. Methods
 
 ### Overview
 
-We developed comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors. TODO write overview summary
+We developed comprehensive specification sheets for each fisheries modeling task. These detailed instruction sets were designed to guide AI agents through complex analytical workflows while minimizing ambiguity and potential errors. TODO write overview summary.
+
+![](Shared/Figure1.png)
+
+**Figure 1** Workflows for a researcher conducting an analysis using (a) a normal workflow augmented by an AI coding assistant and (b) an analysis automated with an AI agent.
 
 ### AI Agents and Large Language Models: Technical Background
 
-Large language models (LLMs) are complex neural networks trained on large bodies of text and images and able to generate novel text. They predict what comes next when given text as input, also called prompting. The unit of prediction is a token, which is a common sequence of letters. The LLMs most people are familiar with are calibrated to be assistants, such that they respond seamlessly to questions. 
+Large language models (LLMs) are complex neural networks trained on large bodies of text and images and able to generate novel text. They predict what comes next when given text as input, also called prompting. The unit of prediction is a token, which is a common sequence of letters. The LLMs most people are familiar with are calibrated to be assistants, such that they respond seamlessly to questions.
 
-LLM's have a finite 'memory' for text they receive such that they can create coherent sentences, phrases and whole documents that are coherent with complex prompts [Cite attention is all your need paper]. This memory, called the context window, is orders of magnitude larger than the short queries that are the most common prompts on commercial web platforms. The best coding models at writing have context windows of 200,000 tokens, equivalent to several PhD theses worth of text, larger models have context windows of 1M tokens plus. LLM training data often includes reasoning and computer code, so LLMs can also exhibit rational reasoning and the ability to implement that reasoning in various programming languages. The reasoning ability and large context windows give them the ability to read substantial documents, reason about complex scientific questions and then create analyses to test ideas. Some LLMs are also multi-modal and can take images as inputs, so can accurately perform tasks such as interpretation of scientific figures. 
+LLM's have a finite 'memory' for text they receive such that they can create coherent sentences, phrases and whole documents that are coherent with complex prompts \[Cite attention is all your need paper\]. This memory, called the context window, is orders of magnitude larger than the short queries that are the most common prompts on commercial web platforms. The best coding models at writing have context windows of 200,000 tokens, equivalent to several PhD theses worth of text, larger models have context windows of 1M tokens plus. LLM training data often includes reasoning and computer code, so LLMs can also exhibit rational reasoning and the ability to implement that reasoning in various programming languages. The reasoning ability and large context windows give them the ability to read substantial documents, reason about complex scientific questions and then create analyses to test ideas. Some LLMs are also multi-modal and can take images as inputs, so can accurately perform tasks such as interpretation of scientific figures.
 
-Generative AI agents are software systems that can operate autonomously to complete a task. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs. Agents embed one or more LLMs within a software system that includes feedback loops among LLM inputs, LLM outputs and other software tools (Figure 1). These feedback loops replace some parts of workflows traditionally performed by humans. For instance, a simple agent workflow could look like: (1) a human requests an analysis is complete; (2) the agent passes the query to an LLM; (3) the LLM responds with code; (4) the agent passes the code to the R program and the code is run; (5) the agent passes the results of the R script back to the LLM as the next input... And so on, until the task is stopped manually or by by trigger points built into the agent. 
+Generative AI agents are software systems that can operate autonomously to complete a task. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs. Agents embed one or more LLMs within a software system that includes feedback loops among LLM inputs, LLM outputs and other software tools (Figure 1). These feedback loops replace some parts of workflows traditionally performed by humans. For instance, a simple agent workflow could look like: (1) a human requests an analysis is complete; (2) the agent passes the query to an LLM; (3) the LLM responds with code; (4) the agent passes the code to the R program and the code is run; (5) the agent passes the results of the R script back to the LLM as the next input... And so on, until the task is stopped manually or by by trigger points built into the agent.
 
-Agent software is made possible by a framework for LLMs to communicate to software tools: the Model Context Protocol. This is a set of rules that tells an LLM what tools are available to it, what rules apply to those tools (such as file type restrictions) and how to structure its response if it wants a tool to be used. When the agent software parses each LLM response it is looking for tool calls, which it then passes into the tool. 
+Agent software is made possible by a framework for LLMs to communicate to software tools: the Model Context Protocol. This is a set of rules that tells an LLM what tools are available to it, what rules apply to those tools (such as file type restrictions) and how to structure its response if it wants a tool to be used. When the agent software parses each LLM response it is looking for tool calls, which it then passes into the tool.
 
-A tool can be any software locally on the user's computer or hosted remotely on the cloud, so long as that software can be interacted via code (an application program interface). Simple agents have tools for reading files, writing to files and running terminal commands. This enables them to read a file's content, then updated it such as adding new code. With terminal commands they can do tasks such as search directories, create files, delete files and run applications such as R scripts. More sophisticated tools include the ability to connect to and navigate in web browsers, conduct web searches and access remotely hosted databases. 
+A tool can be any software locally on the user's computer or hosted remotely on the cloud, so long as that software can be interacted via code (an application program interface). Simple agents have tools for reading files, writing to files and running terminal commands. This enables them to read a file's content, then updated it such as adding new code. With terminal commands they can do tasks such as search directories, create files, delete files and run applications such as R scripts. More sophisticated tools include the ability to connect to and navigate in web browsers, conduct web searches and access remotely hosted databases.
 
-The advent of agents is leading to longer and more complex prompts, which have been called 'specifications' [cite AI talk on youtube]. These specifications describe a task with detailed instructions. Our aim was to develop specifications for common fisheries modelling tasks and then test a leading agent software for its ability to complete those tasks. 
+The advent of agents is leading to longer and more complex prompts, which have been called 'specifications' \[cite AI talk on youtube\]. These specifications describe a task with detailed instructions. Our aim was to develop specifications for common fisheries modelling tasks and then test a leading agent software for its ability to complete those tasks.
 
 #### Experimental Design
+
+Up to here, have re-structured methods. Now write them. 
 
 We implemented a rigorous experimental design to assess AI agent performance:
 
@@ -75,63 +79,7 @@ We implemented a rigorous experimental design to assess AI agent performance:
 
 3.  **Comprehensive Evaluation**: Each task was assessed using multivariate rubrics that evaluated both quantitative outputs (e.g., statistical significance) and qualitative performance through categorical outcome metrics.
 
-### Agent set-up
-
-### Specification Sheet Development
-
-We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
-
-The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
-
-We drew best practice prompting strategies to write these instructions [@brownLLMecology].
-
-
-#### Technical Implementation
-
-
-There are a large number of LLMs available that can be mixed and matched with a growing number of agent software platforms. Here we test the Roo Code agent software. At the time of writing Roo Code was the number two ranked software by its user base. We picked this software because it allows greater customisation than the number one ranked software (Cline), so could be more useful for bespoke scientific applications. 
-
-For LLMs we chose to test Claude Sonnet 4.0 and Kimi K2, the latest versions of these models available at the time of the study. Claude Sonnet 4.0 is well recognized as an industry leader for programming and reasoning tasks. Roo Code has been extensively developed with Sonnet in mind, so is likely also optimized for Sonnet's quirks. Other popular choices are the openAI models (e.g. GPT 5.0), but we have perform slightly less consistently for R code than Sonnet. 
-
-Kimi K2 is a much cheaper alternative to Sonnet, but which has also shown industry leading coding abilities. Kimi K2 was built with tool-use in mind, so we tested it here to see if it can obtain similar results at a lower cost. 
-
-
-
-We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
-
-Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval.
-
-We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms]. Quarantined to prevent sharing of prompt caches.
-
-After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
-
-### Evaluating the results 
-
-Evaluated from two perspectives
-
-An expert user with advanced coding skills can employ highly specific, technically rich prompts that reference particular statistical models, coding frameworks, and data structures, instructing the AI to optimise parameters, debug scripts, or automate simulations (Jansen et al. 2025). An expert would evaluate on criteria such as statistically robustness, accuracy and precision, reproducibility, efficiency, technical detail, scientific rigor, reliability, technical implementation, and quality and completeness of outputs. In contrast, a novice user with limited coding experience would frame prompts in plain-English expecting the AI to recommend analytical pathways and translate technical requirements into accessible workflows. Their evaluation would assess whether the results appear consistent with their expectations, if steps clearly explained and terminology is easy to understand, whether the AI improves accessibility, clarity and reduces technical barriers, and outputs are actionable for decision-making. 
-
-We evaluated each task using multivariate rubrics that: - Quantitatively assessed statistical outputs (e.g., p-values) - Qualitatively scored outputs against predefined categorical metrics
-
-For each task, we calculated two key performance indicators: Aptitude and Reliability [@laban2025llms].
-
-Aptitude is a measure of the quality of the Agent's best responses and was defined:
-
-$$
-\text{Aptitude} = \frac{1}{k} \sum_{i=1}^{k} S_{(i)}
-$$
-
-where $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
-
-Reliability is a measure of the consistency of the Agent's responses across the ten replicates and was defined:
-
-$$
-\text{Reliability} = \frac{1}{k} \sum_{i=1}^{k} \frac{S_{(i)} - S_{(1)}}{S_{(i)}}
-$$
-
-where $S_{(1)}$ is the score of the best response, and $S_{(i)}$ are the top $k$ scores (with $k = \lceil 0.9 \times n \rceil$, $n = 10$ replicates), sorted in descending order.
-
-### Case-studies 
+### Case-studies
 
 #### Von Bertalanffy Growth Model Test Case
 
@@ -142,8 +90,6 @@ The von Bertalanffy (VB) growth model represents a fundamental analytical task i
 1.  **Disciplinary Specificity**: VB growth modeling is a highly specialized task primarily used in fisheries science, making it an ideal test of AI agents' domain-specific capabilities.
 
 2.  **Complexity Gradient**: While seemingly straightforward, the task involves nuanced statistical challenges, particularly in parameter estimation and confidence interval calculation.
-
-#### Experimental Design
 
 **Data Simulation** We generated a single, carefully controlled dataset with known growth parameters to: - Minimize variability introduced by data heterogeneity - Enable precise assessment of parameter recovery accuracy - Provide a standardized benchmark for AI performance
 
@@ -165,6 +111,61 @@ Order of priority for awarding marks: Used report as primary source of informati
 
 ### Yield per recruit analysis
 
+### Agent set-up
+
+#### Specification sheets
+
+We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
+
+The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
+
+We drew best practice prompting strategies to write these instructions [@brownLLMecology].
+
+#### Technical Implementation
+
+There are a large number of LLMs available that can be mixed and matched with a growing number of agent software platforms. Here we test the Roo Code agent software. At the time of writing Roo Code was the number two ranked software by its user base. We picked this software because it allows greater customisation than the number one ranked software (Cline), so could be more useful for bespoke scientific applications.
+
+For LLMs we chose to test Claude Sonnet 4.0 and Kimi K2, the latest versions of these models available at the time of the study. Claude Sonnet 4.0 is well recognized as an industry leader for programming and reasoning tasks. Roo Code has been extensively developed with Sonnet in mind, so is likely also optimized for Sonnet's quirks. Other popular choices are the openAI models (e.g. GPT 5.0), but we have perform slightly less consistently for R code than Sonnet.
+
+Kimi K2 is a much cheaper alternative to Sonnet, but which has also shown industry leading coding abilities. Kimi K2 was built with tool-use in mind, so we tested it here to see if it can obtain similar results at a lower cost.
+
+We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
+
+Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval.
+
+We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms]. Quarantined to prevent sharing of prompt caches.
+
+After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
+
+### Evaluating the results
+
+Evaluated from two perspectives
+
+An expert user with advanced coding skills can employ highly specific, technically rich prompts that reference particular statistical models, coding frameworks, and data structures, instructing the AI to optimise parameters, debug scripts, or automate simulations (Jansen et al. 2025). An expert would evaluate on criteria such as statistically robustness, accuracy and precision, reproducibility, efficiency, technical detail, scientific rigor, reliability, technical implementation, and quality and completeness of outputs. In contrast, a novice user with limited coding experience would frame prompts in plain-English expecting the AI to recommend analytical pathways and translate technical requirements into accessible workflows. Their evaluation would assess whether the results appear consistent with their expectations, if steps clearly explained and terminology is easy to understand, whether the AI improves accessibility, clarity and reduces technical barriers, and outputs are actionable for decision-making. 
+
+We evaluated each task using multivariate rubrics that: - Quantitatively assessed statistical outputs (e.g., p-values) - Qualitatively scored outputs against predefined categorical metrics
+
+For each task, we calculated three key performance indicators: Accuracy, Aptitude, and Consistency [@laban2025llms].
+
+First, we computed the mean score, normalized by each criteria's maximum value, for each question across all replicates. Then, for each model and user type, we calculated:
+Accuracy is defined as the mean of the question-level means. Aptitude is the 90th percentile of the question-level means. Consistency is one minus the difference between the 90th and 10th percentiles of the question-level means.
+
+Let \( \bar{S}_j \) be the mean normalized score for question \( j \) (averaged across replicates), and let there be \( m \) questions:
+
+$$
+\text{Accuracy} = \frac{1}{m} \sum_{j=1}^{m} \bar{S}_j
+$$
+
+$$
+\text{Aptitude} = \text{Quantile}_{0.9}(\{\bar{S}_j\}_{j=1}^m)
+$$
+
+$$
+\text{Consistency} = 1 - \left( \text{Quantile}_{0.9}(\{\bar{S}_j\}_{j=1}^m) - \text{Quantile}_{0.1}(\{\bar{S}_j\}_{j=1}^m) \right)
+$$
+
+where \( \text{Quantile}_p \) denotes the \( p \)-th quantile of the set of question-level means.
+
 ## 3. Results
 
 ### VBF
@@ -179,22 +180,19 @@ Add number for how often kimi stuffed up the 'size at age 5' name in the databas
 
 ### GLM
 
+Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present.
 
-Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present. 
+![](Shared/Outputs/figure-3.png){#fig3a}
 
-![Model's performance score based on interpretation, completeness, technical implementation, and bonus points, reflecting overall aptitude, average performance, and consistency]("Shared/Outputs/figure-3.png"){#fig3a}
-
-
-**Figure 3** RICHARD to insert figure 3 here as png file (600dpi). See analyse-glm.R. I've labelled the plots I want PLOT 3A and PLOT 3B. For 3B please order the x-axis labels 'Accuracy', 'Completness', 'Technical Implementation', 'Bonus points'. Please also group the labels in 3A by the same categories (so show the label for each individual question, but also show a heading label for each of the top level categories of Accuracy, Completenss etc...). Then improve on colour scale and fix up labels so they are ready for publication. 
-
+**Figure 3** Results for the GLM case-study. (a) Mean accuracy for the two LLMs and each criteria from the rubric. (b) Summary of mean accuracy, aptitude and reliability for the two LLMs by criteria types.
 
 ### YPR
 
-Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish]. 
+Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
 
-### Cost and accuracy 
+### Cost and accuracy
 
-Show grouped results here on cost and overal accuracy across all case-studies? Facet by case-study to plot: cost (x-axis) accuracy (y-axis) LLM (colour).  
+Show grouped results here on cost and overal accuracy across all case-studies? Facet by case-study to plot: cost (x-axis) accuracy (y-axis) LLM (colour).
 
 ## 4. Discussion
 
