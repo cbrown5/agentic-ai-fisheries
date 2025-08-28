@@ -6,11 +6,10 @@
 Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 
 ## TODO
-- Ask Alex to bring over results into this repo
-- Ask Alex to do aptitude and consistency stats, with binary outcome
-- Richard to do GLM results
-- Leigha running YPR analysis
-- Chris to keep working on manuscript
+- Alex doing YPR and VBF graphs, might need help
+- Graph of the tokens and accuracy as a summary? 
+- Leigha working on the intro
+- CB to write the methods. 
 
 ## Summary
 
