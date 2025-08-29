@@ -53,9 +53,10 @@ library(RColorBrewer)
 display.brewer.all()
 
 fig3a <- ggplot(mean_scores) + 
-    aes(x = Question, y = Model, fill = Score_norm) +
+    aes(x = Question, y = Model, fill = Score_norm, label = round(Score_norm, 2)) +
     geom_tile() +
     labs(x = "", y = "") + 
+    geom_text(size = 3) +
     facet_grid(.~ Type, scales = "free_x", space = "free_x") +
     scale_fill_distiller("Accuracy \n score", palette = "Blues", direction = 1) +
     theme(
@@ -84,7 +85,7 @@ mean_scores_type <- test_results %>%
         Aptitude = quantile(Score_norm, 0.9, na.rm = TRUE),
         Reliability = 1 - (quantile(Score_norm, 0.9, na.rm = TRUE) - quantile(Score_norm, 0.1, na.rm = TRUE))) %>%
     ungroup() %>%
-    pivot_longer(cols = c(Accuracy, Aptitude, Consistency), 
+    pivot_longer(cols = c(Accuracy, Aptitude, Reliability), 
                  names_to = "Metric", 
                  values_to = "Score_norm") 
           
@@ -139,7 +140,7 @@ mean_total_cost <- test_results %>%
         `Aptitude` = quantile(`Total cost`, 0.9, na.rm = TRUE),
         `Consistency` = 1 - (quantile(`Total cost`, 0.9, na.rm = TRUE) - quantile(`Total cost`, 0.1, na.rm = TRUE))) %>%
     ungroup() %>%
-    pivot_longer(cols = c(`Average`, `Aptitude`, `Consistency`), 
+    pivot_longer(cols = c(`Average`, `Aptitude`, `Reliability`), 
                  names_to = "Metric", 
                  values_to = "Total cost")
 

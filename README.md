@@ -6,10 +6,20 @@
 Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 
 ## TODO
+- Full draft of introduction, with reference - Leigha
+- Full draft of Methods with references - Chris
+- VBF graph with new 'simple prompt' simulations - Alex
+- Tokens vs accuracy summary graph. Graph showing one facet for each case-study. Each facet has an x-y with points. x is cost, y is the overall accuracy, colours are the two models. So would need to pull all data in together, then just average accuracy scores across all the criteria, so we get one accuracy score per run - ????
+- Write results - Chris with help?
+- Write discussion (to do later)
+
+
 - Alex doing YPR and VBF graphs, might need help
 - Graph of the tokens and accuracy as a summary? 
 - Leigha working on the intro
 - CB to write the methods. 
+
+YPR data and plotting code currently on the onedrive. 
 
 ## Summary
 

@@ -23,13 +23,9 @@ Journal: Fish and Fisheries
 
 ## 1. Introduction
 
-Fisheries modelling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (Punt et al. 2025). Fisheries science ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. Quantitative environmental scientists rarely have formal training in programming, so creating and maintaining computer code is a challenge [Leigha find ref, see below for ideas, ]. Creating code that other people can easily understand and use is an even greater challenge. Thus, there are a limited number of trained modelers that also understand the complexities of fishereries sciences, creating a bottleneck for fisheries stock assessments and compounding issues with constraints on data availability [leigha ref here].
+Fisheries modelling demands extensive technical expertise and time-consuming computational workflows. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios (Punt et al. 2025). Fisheries science ecology more generally relies on a broad variety of quantitative methods, which can be difficult to learn. Quantitative environmental scientists rarely have formal training in programming, so creating and maintaining computer code is a challenge \[Leigha find ref, see below for ideas, \]. Creating code that other people can easily understand and use is an even greater challenge. Thus, there are a limited number of trained modelers that also understand the complexities of fishereries sciences, creating a bottleneck for fisheries stock assessments and compounding issues with constraints on data availability \[leigha ref here\].
 
-Potential refs: 
-I think there was a paper on graduate shcool training in R in the USA? 
-(Jenkins et al. 2023; Popovic et al. 2024)
-Jenkins, Gareth B, Andrew P Beckerman, Céline Bellard, Ana Benı́tez-López, Aaron M Ellison, Christopher G Foote, Andrew L Hufton, et al. 2023. “Reproducibility in Ecology and Evolution: Minimum Standards for Data and Code.” Ecology and Evolution 13 (5): e9961.
-Popovic, Gordana, Tanya Jane Mason, Szymon Marian Drobniak, Tiago André Marques, Joanne Potts, Rocío Joo, Res Altwegg, et al. 2024. “Four Principles for Improved Statistical Ecology.” Methods in Ecology and Evolution 15 (2): 266–81. https://doi.org/https://doi.org/10.1111/2041-210X.14270.
+Potential refs: I think there was a paper on graduate shcool training in R in the USA? (Jenkins et al. 2023; Popovic et al. 2024) Jenkins, Gareth B, Andrew P Beckerman, Céline Bellard, Ana Benı́tez-López, Aaron M Ellison, Christopher G Foote, Andrew L Hufton, et al. 2023. “Reproducibility in Ecology and Evolution: Minimum Standards for Data and Code.” Ecology and Evolution 13 (5): e9961. Popovic, Gordana, Tanya Jane Mason, Szymon Marian Drobniak, Tiago André Marques, Joanne Potts, Rocío Joo, Res Altwegg, et al. 2024. “Four Principles for Improved Statistical Ecology.” Methods in Ecology and Evolution 15 (2): 266–81. https://doi.org/https://doi.org/10.1111/2041-210X.14270.
 
 @scheepens2024
 
@@ -37,7 +33,7 @@ Cooper, N., Clark, A.T., Lecomte, N., Qiao, H. and Ellison, A.M., 2024. Harnessi
 
 Punt, A.E., Dichmont, C.M., Dowling, N.A., Deng, R.A., Pascoe, S., van Putten, I., Bessell-Browne, P., Burch, P., Burnell, O., Chick, R.C. and de Lestang, S., 2025. Identifying capacity limitations and training needs using a stock assessment game. *Fisheries Research*, *284*, p.107319.
 
-Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modelling workflows. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry. LLM-generated code is produced quickly, cheaply and speeds up routine tasks (Cooper et al. 2024). [leigha fill out with examples from other fields, e.g. Scheepens?] However, questions remain about the reliability and quality of this AI-generated code (Cooper et al. 2024) - [Leigha elaborte on what these questions are]. To effectively use LLM for coding, users need to be familiar enough with the programming language to detect anomalies in the AI outputs (Cooper et al. 2024).
+Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modelling workflows. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers to entry. LLM-generated code is produced quickly, cheaply and speeds up routine tasks (Cooper et al. 2024). \[leigha fill out with examples from other fields, e.g. Scheepens?\] However, questions remain about the reliability and quality of this AI-generated code (Cooper et al. 2024) - \[Leigha elaborte on what these questions are\]. To effectively use LLM for coding, users need to be familiar enough with the programming language to detect anomalies in the AI outputs (Cooper et al. 2024).
 
 Previous tests, primarily in the R language, have revealed significant challenges for the application of generative AI to statistics. While LLMs can generate executable code, less than 50% of generated scripts were technically accurate [@jansen2025leveraging]. Notably, code execution rates improved when AI models could self-correct [@zhu2024large]. Key insights have emerged about effective AI interaction: Contextual information is crucial for making informed statistical choices Providing reference code and statistical approaches guides AI agents One-shot prompting with comprehensive examples often yields more reliable results than multi-turn conversations [@laban2025llms]. Users must be skillfull in writing effective prompts—instructions or inputs given to the LLM, and evaluating the responses (Cooper et al. 2024). The development of detailed specification sheets—long, precise instruction sets (i.e. prompts) written in plain English—represents a promising approach to improving AI-generated analysis. These specifications can articulate analysis requirements clearly, making them accessible to both expert and novice users.
 
@@ -69,7 +65,7 @@ The advent of agents is leading to longer and more complex prompts, which have b
 
 #### Experimental Design
 
-Up to here, have re-structured methods. Now write them. 
+Up to here, have re-structured methods. Now write them.
 
 We implemented a rigorous experimental design to assess AI agent performance:
 
@@ -111,6 +107,8 @@ Order of priority for awarding marks: Used report as primary source of informati
 
 ### Yield per recruit analysis
 
+Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
+
 ### Agent set-up
 
 #### Specification sheets
@@ -147,10 +145,9 @@ We evaluated each task using multivariate rubrics that: - Quantitatively assesse
 
 For each task, we calculated three key performance indicators: Accuracy, Aptitude, and Consistency [@laban2025llms].
 
-First, we computed the mean score, normalized by each criteria's maximum value, for each question across all replicates. Then, for each model and user type, we calculated:
-Accuracy is defined as the mean of the question-level means. Aptitude is the 90th percentile of the question-level means. Consistency is one minus the difference between the 90th and 10th percentiles of the question-level means.
+First, we computed the mean score, normalized by each criteria's maximum value, for each question across all replicates. Then, for each model and user type, we calculated: Accuracy is defined as the mean of the question-level means. Aptitude is the 90th percentile of the question-level means. Consistency is one minus the difference between the 90th and 10th percentiles of the question-level means.
 
-Let \( \bar{S}_j \) be the mean normalized score for question \( j \) (averaged across replicates), and let there be \( m \) questions:
+Let ( \bar{S}\_j ) be the mean normalized score for question ( j ) (averaged across replicates), and let there be ( m ) questions:
 
 $$
 \text{Accuracy} = \frac{1}{m} \sum_{j=1}^{m} \bar{S}_j
@@ -164,31 +161,39 @@ $$
 \text{Consistency} = 1 - \left( \text{Quantile}_{0.9}(\{\bar{S}_j\}_{j=1}^m) - \text{Quantile}_{0.1}(\{\bar{S}_j\}_{j=1}^m) \right)
 $$
 
-where \( \text{Quantile}_p \) denotes the \( p \)-th quantile of the set of question-level means.
+where ( \text{Quantile}\_p ) denotes the ( p )-th quantile of the set of question-level means.
 
 ## 3. Results
 
 ### VBF
 
-Alex doing plot
+The Sonnet LLM completed the von Bertlanaffy task with perfect accuracy across all 10 replicates (fig. 2). The Kimi LLM estimated most parameters more than 80% accurate. However, we note that Kimi's output needed some cleaning before we could produce summary results. In particular, the LLM used names for the 'length at age 5' parameter that were inconsistent with the convention we proposed in the spec.
 
-No point going to mark code for VBF because it basically works for every run. Just write up why run 11 and run 13 broke. Explain why it broke.
+The chat logs revealed that in two replicates Kimi made simple syntax errors in the R code, resulting in a script that did not complete the task error free. It thus manually entered parameter values into the parameter table, putting those values in the wrong positions.
 
-VBF: plot of accuracy of parameter estimates, and confidence intervals, for each parameter. (bar plot, or just %s? )
+![](Shared/Outputs/fig2-vbf.png)
 
-Add number for how often kimi stuffed up the 'size at age 5' name in the database. It often made a new databse with the wrong names.
+**Figure 2** Results for the von Bertalanffy case-study. (a) Mean accuracy for the two LLMs and each parameter estimate. (b) Summary of mean accuracy, aptitude and reliability for the two LLMs parameters.
 
 ### GLM
 
-Kimi frequently failed to complete reports (e.g., in run 13) or did not follow instructions precisely (e.g., used an incorrect ggplot theme). In some cases, such as run 15, the model generated code for plots that executed successfully but did not complete the full reporting task. Notably, Kimi consistently used the correct scale for predictive plots (linear scale), in contrast to Sonnet, which sometimes did not. However, overall, Kimi's outputs were less consistent, and in some instances (e.g., run 14), the model indicated that a final report was completed when it was not present.
+The Sonnet LLM was able to consistently complete the full task, from data import, data wrangling, statistical analysis, verification of analysis and report writing (fig. 3). It always conducted the model simplification using likelihood ratios (as requested) and used the appropriate p-value to interpret the results in the written reports. Inconsistencies for the Sonnet LLM were that it did not always produce diagnostic plots that were relevant for count data and it did not always provide interpretation of the diagnostic plots. Strangely, despite its high accuracy on all other tasks, the Sonnet LLM was almost incapable of following the simple instruction to use a log scale on the y-axis of predictive plots.
 
-![](Shared/Outputs/figure-3.png){#fig3a}
+The Kimi LLM did not perform reliably or accurately on the GLM task (fig 3). It frequently failed to complete reports (no report created 30% of the time) or did not follow instructions precisely. It often created code for the likelihood ratio test, but then used a different or made-up p-value in reporting (fig 3a). In some cases the LLM generated code for plots that executed successfully when we tested it, but did not complete the full reporting task. We found cases of lying in the chat logs for the Kimi agent. The Kimi agent often stated it had completed the reports, although it had not done so. The only criteria where the Kimi LLM outperformed the Sonnet LLM was on using the correct scale for the predictive plots (fig 3a).
+
+The Kimi LLM had high aptitude for completeness (92%) and technical implementation (96%) (fig 3b), indicating that it could perform well at these types of tasks, just not reliably.
+
+Neither the Kimi or the Sonnet LLM performed well on the 'bonus points' tasks: additional important considerations that we did not explicitly request in the GLM spec. Sonnet occasionally made further interpretation of the data that we judged as valuable contributions. Neither model ever picked up on confounding between the two covariates and neither model suggested that confounding as something that should be tested for.
+
+![](Shared/Outputs/figure-3.png)
 
 **Figure 3** Results for the GLM case-study. (a) Mean accuracy for the two LLMs and each criteria from the rubric. (b) Summary of mean accuracy, aptitude and reliability for the two LLMs by criteria types.
 
 ### YPR
 
-Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
+Up to here, write up YPR results. Basically Sonnet did an ok job. But often stuffed up the bit abotu order of fishing and natural mortality, or applied moretalty to the first age class despite instructions otherwise. Once again, Kimi was not as good, though we note had some high aptitude scores. It frequently failed to finish the tasks... Todo alex to add further anallysis of the qualitative results.
+
+![](Shared/Outputs/figure-4_ypr.png)
 
 ### Cost and accuracy
 
@@ -197,6 +202,12 @@ Show grouped results here on cost and overal accuracy across all case-studies? F
 ## 4. Discussion
 
 When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an eelemnt of repeatability, in that results are reasonably consistent.
+
+Discuss issue with Kimi making up values. can't be trusted.
+
+Overall we found Sonnet to be a reliable and accurate implementer of the statistical task and that it could consistently follow instructions. However, it could not be relied upon as an expert statistician - it did not consistently provide best-practice verification plots and it never suggested we check for confounding. Therefore, it is a powerful tool if used by an expert, or given clear steps on the workflow required for a statistical valid analysis.
+
+Kimi was less reliable if left on its own. Basiscally would be good as an AI aid, but not trusted to work on its own. Its work needs more correction and checking. Note that could be interation with Roo Code set-up which is optimised for Sonnet.
 
 ## 5. Conclusion
 
