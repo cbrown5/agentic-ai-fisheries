@@ -2,11 +2,9 @@
 title: "Automating fisheries modelling with agentic AI"
 bibliography: references.bib
 # csl: oneearth.csl
-editor: visual
+editor: source
 format: docx
-# format:
-  # docx:
-    # reference-doc: template.docx
+    #reference-doc: template.docx
 ---
 
 Journal: Fish and Fisheries
@@ -51,9 +49,9 @@ We developed comprehensive specification sheets for each fisheries modeling task
 
 ### AI Agents and Large Language Models: Technical Background
 
-Large language models (LLMs) are complex neural networks trained on large bodies of text and images and able to generate novel text. They predict what comes next when given text as input, also called prompting. The unit of prediction is a token, which is a common sequence of letters. The LLMs most people are familiar with are calibrated to be assistants, such that they respond seamlessly to questions.
+Large language models (LLMs) are complex neural networks trained on large bodies of text and images and able to generate novel text. They predict what comes next when given text as input, also called prompting. The unit of prediction is a token, each of which is a sequence of letters that is common in the training set. The LLMs most people are familiar with are calibrated to be assistants, such that they respond seamlessly to questions.
 
-LLM's have a finite 'memory' for text they receive such that they can create coherent sentences, phrases and whole documents that are coherent with complex prompts \[Cite attention is all your need paper\]. This memory, called the context window, is orders of magnitude larger than the short queries that are the most common prompts on commercial web platforms. The best coding models at writing have context windows of 200,000 tokens, equivalent to several PhD theses worth of text, larger models have context windows of 1M tokens plus. LLM training data often includes reasoning and computer code, so LLMs can also exhibit rational reasoning and the ability to implement that reasoning in various programming languages. The reasoning ability and large context windows give them the ability to read substantial documents, reason about complex scientific questions and then create analyses to test ideas. Some LLMs are also multi-modal and can take images as inputs, so can accurately perform tasks such as interpretation of scientific figures.
+LLM's have a finite 'memory' for text they receive such that they can create coherent sentences, phrases and whole documents that are coherent with complex prompts \[Citation?\]. This memory, called the context window, is orders of magnitude larger than the short queries that are the most common prompts on commercial web platforms. The best coding models at writing have context windows of 200,000 tokens, equivalent to several PhD theses worth of text, larger models have context windows of 1M tokens plus. LLM training data often includes reasoning and computer code, so LLMs can also exhibit rational reasoning and the ability to implement that reasoning in various programming languages. The reasoning ability and large context windows give them the ability to read substantial documents, reason about complex scientific questions and then create analyses to test ideas. Some LLMs are also multi-modal and can take images as inputs, so can accurately perform tasks such as interpretation of scientific figures.
 
 Generative AI agents are software systems that can operate autonomously to complete a task. Unlike simple chatbots, these agents can: - Iterate through multiple computational steps - Make autonomous decisions about analysis workflows - Generate and execute code - Self-correct and refine outputs. Agents embed one or more LLMs within a software system that includes feedback loops among LLM inputs, LLM outputs and other software tools (Figure 1). These feedback loops replace some parts of workflows traditionally performed by humans. For instance, a simple agent workflow could look like: (1) a human requests an analysis is complete; (2) the agent passes the query to an LLM; (3) the LLM responds with code; (4) the agent passes the code to the R program and the code is run; (5) the agent passes the results of the R script back to the LLM as the next input... And so on, until the task is stopped manually or by by trigger points built into the agent.
 
@@ -65,43 +63,33 @@ The advent of agents is leading to longer and more complex prompts, which have b
 
 #### Experimental Design
 
-Up to here, have re-structured methods. Now write them.
+Our experimental approach was to test two LLMs (Claude Sonnet 4.0 and Kimi K2) against each case-study. Each case-study by LLM combination was replicated 10 times to account for the inherent randomness in AI-generated outputs. Ten replicates are widely considered sufficient to capture response variability in computational studies [@laban2025llms]. We quarantined each replicate in a different VScode session to avoid replicates sharing information via the cache. We then were able to calculate quality scores for the agent responses across the replicate runs for each of our criteria.
 
-We implemented a rigorous experimental design to assess AI agent performance:
+For LLMs we chose to test Claude Sonnet 4.0 and Kimi K2, the latest versions of these models available at the time of the study. Claude Sonnet 4.0 is well recognized as an industry leader for programming and reasoning tasks. Roo Code has been extensively developed with Sonnet in mind, so is likely also optimized for Sonnet's quirks. Other popular choices are the openAI models (e.g. GPT 5.0), but we have found perform slightly less consistently for R code than Sonnet.
 
-1.  **Multiple AI Models**: We tested two large language models—Claude Sonnet Version 4 and Kimi K2—to evaluate inter-model variability.
-
-2.  **Replicate Runs**: We conducted 10 independent runs for each prompt and model. This approach accounts for the inherent randomness in AI-generated outputs and allows us to quantify response consistency. Ten replicates are widely considered sufficient to capture response variability in computational studies [@laban2025llms].
-
-3.  **Comprehensive Evaluation**: Each task was assessed using multivariate rubrics that evaluated both quantitative outputs (e.g., statistical significance) and qualitative performance through categorical outcome metrics.
+Kimi K2 is a much cheaper alternative to Sonnet, but which has also shown industry leading coding abilities. Kimi K2 was built with tool-use in mind, so we tested it here to see if it can obtain similar results to Sonnet at a lower cost.
 
 ### Case-studies
 
+We followed similar guidelines for creating specification sheets for each of the three case-studies. These specifications provided detailed instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications. We drew best practice prompting strategies to write these instructions, including using examples and specifying a consistent structure and format for outputs [@brownLLMecology].
+
+The specification sheets drew on fisheries and ecology text books [@haddon; @ogle2018; @zuur2009mixed] to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
+
 #### Von Bertalanffy Growth Model Test Case
 
-#### Rationale and Significance
+Our simplest test for the agents was to fit a von Bertalanffy growth model to some size at age data. The von Bertalanffy was chosen because it is a common in fisheries science but rare in other disciplines and fitting it requires use of non-linear statistical algorithms. Thus, this task involves nuanced statistical challenges, particularly in parameter estimation and confidence interval calculation.
 
-The von Bertalanffy (VB) growth model represents a fundamental analytical task in fisheries stock assessment. We selected this model for several critical reasons:
+We simulated a single size at age dataset with known growth parameters based on *Bolbometopon muricatum* [@taylor2018parrotfish]. The AI agents were tasked with: Estimating VB growth function parameters, calculating confidence intervals via bootstrapping, predicting fish size at a specific age (5 years) and generating 95% confidence intervals for size predictions.
 
-1.  **Disciplinary Specificity**: VB growth modeling is a highly specialized task primarily used in fisheries science, making it an ideal test of AI agents' domain-specific capabilities.
+The specification sheet had detailed instructions for this task, including instructions for using the `nls()` function to fit the von Bertalanffy, the growth model equation and to use the `boot` package for bootstrapping (supplementary material XXX, [@ogle2018]).
 
-2.  **Complexity Gradient**: While seemingly straightforward, the task involves nuanced statistical challenges, particularly in parameter estimation and confidence interval calculation.
-
-**Data Simulation** We generated a single, carefully controlled dataset with known growth parameters to: - Minimize variability introduced by data heterogeneity - Enable precise assessment of parameter recovery accuracy - Provide a standardized benchmark for AI performance
-
-**Specification Requirements** The AI agents were tasked with: - Estimating VB growth function parameters - Calculating confidence intervals via bootstrapping - Predicting fish size at a specific age (5 years) - Generating confidence intervals for size predictions
-
-**Analytical Objectives** Our primary goals were to evaluate the AI agents' ability to: - Recover known parameters accurately - Implement bootstrapping techniques correctly - Produce statistically sound estimates with appropriate uncertainty quantification
-
-The detailed specification sheet, drawing from established fisheries modeling references (e.g., [@ogle2016introductory]), provided comprehensive guidance for the AI agents.
+We instructed the replicate agents to complete a csv file of parameter values. The agent was given an empty csv file that had only headings, such that it provided results to us in a standardized way. We then scored the responses for accuracy on each parameter and confidence interval. Each replicate and parameter estimate was scored a `1` if it was within 5% of our our estimated value.
 
 ### Generalized linear model of fish habitat
 
-#### Spec
+Our second task was to test the relationship between abundance of a juvenile fish and cover of two different types of coral. UP TO HERE\>
 
 Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables).
-
-#### Marking rubric
 
 Order of priority for awarding marks: Used report as primary source of information. If this wasn't knitted we knitted it. If it didn't knit we read the rmd file. If there was no rmd file, or the rmd file was missing key sections, we looked for figures and at the code. DId this for p-values, prediction plots, diagnostic plots.
 
@@ -111,29 +99,11 @@ Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish].
 
 ### Agent set-up
 
-#### Specification sheets
-
-We created specification sheets that provided exhaustive instructions for each modeling task. These documents included: - Introduction and context - Precise aims of the analysis - Detailed data methodology - Comprehensive analysis methodology - Explicit instructions for the AI agent - Technical context and constraints - Workflow description - Required directory structure - Metadata specifications
-
-The specification sheets drew on prominent scientific references to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
-
-We drew best practice prompting strategies to write these instructions [@brownLLMecology].
-
-#### Technical Implementation
-
 There are a large number of LLMs available that can be mixed and matched with a growing number of agent software platforms. Here we test the Roo Code agent software. At the time of writing Roo Code was the number two ranked software by its user base. We picked this software because it allows greater customisation than the number one ranked software (Cline), so could be more useful for bespoke scientific applications.
 
-For LLMs we chose to test Claude Sonnet 4.0 and Kimi K2, the latest versions of these models available at the time of the study. Claude Sonnet 4.0 is well recognized as an industry leader for programming and reasoning tasks. Roo Code has been extensively developed with Sonnet in mind, so is likely also optimized for Sonnet's quirks. Other popular choices are the openAI models (e.g. GPT 5.0), but we have perform slightly less consistently for R code than Sonnet.
+We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The LLMs were accessed via the OpenRouter API. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
 
-Kimi K2 is a much cheaper alternative to Sonnet, but which has also shown industry leading coding abilities. Kimi K2 was built with tool-use in mind, so we tested it here to see if it can obtain similar results at a lower cost.
-
-We utilized Roo Code agentic AI software (v3.25.1, VS Code extension v1.103.0) in 'Code' mode. The software was configured with auto-approval for tasks including: - File read/write operations - API request retries - Model context protocol interactions - Sub-task creation - Code execution - Self-questioning and todo list management
-
-Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval.
-
-We conducted 10 independent replicates for each prompt across both models. This approach accounts for the inherent randomness in large language model (LLM) responses, with ten replicates widely considered sufficient to capture response variability [@laban2025llms]. Quarantined to prevent sharing of prompt caches.
-
-After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
+Manual intervention was required only for terminal commands, which were carefully vetted for safety before approval. After each task, Roo Code initiated an 'attempt_completion' protocol to finalize the agent's interactions. We then captured comprehensive metadata, including: - Chat history - Token input and output - Estimated computational cost
 
 ### Evaluating the results
 
@@ -167,11 +137,13 @@ where ( \text{Quantile}\_p ) denotes the ( p )-th quantile of the set of questio
 
 ### VBF
 
-The Sonnet LLM completed the von Bertlanaffy task with perfect accuracy across all 10 replicates (fig. 2). The Kimi LLM estimated most parameters more than 80% accurate. However, we note that Kimi's output needed some cleaning before we could produce summary results. In particular, the LLM used names for the 'length at age 5' parameter that were inconsistent with the convention we proposed in the spec.
+The Sonnet LLM with the full spec completed the von Bertlanaffy task with perfect accuracy across all 10 replicates (fig. 2). The Kimi LLM estimated most parameters more than 80% accurate. However, we note that Kimi's output needed some cleaning before we could produce summary results. In particular, the LLM used names for the 'length at age 5' parameter that were inconsistent with the convention we proposed in the spec.
 
 The chat logs revealed that in two replicates Kimi made simple syntax errors in the R code, resulting in a script that did not complete the task error free. It thus manually entered parameter values into the parameter table, putting those values in the wrong positions.
 
-![](Shared/Outputs/fig2-vbf.png)
+The Sonnet LLM also performed close to 100% accuracy for all parameters when using the simpler specification that had no instructions about algorithms to use for fitting the von Bertalanffy (fig 2a). It scored 100% accuracy for parameters K and Linf and the estimate of the mean length at age 5. Accuracy was lower for the confidence intervals for length at age 5. However, when reviewing the R code it created we noticed it commonly used the t distribution for estimating confidence intervals, compared to our solution that used bootstrapping. Hence the confidence intervals were greater than 5% different to ours in 30-40% of cases, but still estimated with a valid algorithm. Likewise, the values for t0 were often \>5% but \<10% different to our values.
+
+![](Shared/Outputs/fig2-vbf_Claude-Kimi-simple.png)
 
 **Figure 2** Results for the von Bertalanffy case-study. (a) Mean accuracy for the two LLMs and each parameter estimate. (b) Summary of mean accuracy, aptitude and reliability for the two LLMs parameters.
 
@@ -193,7 +165,7 @@ Neither the Kimi or the Sonnet LLM performed well on the 'bonus points' tasks: a
 
 Up to here, write up YPR results. Basically Sonnet did an ok job. But often stuffed up the bit abotu order of fishing and natural mortality, or applied moretalty to the first age class despite instructions otherwise. Once again, Kimi was not as good, though we note had some high aptitude scores. It frequently failed to finish the tasks... Todo alex to add further anallysis of the qualitative results.
 
-![](Shared/Outputs/figure-4_ypr.png)
+![](Shared/Outputs/figure-4-YPR-quant_and_qual.png)
 
 ### Cost and accuracy
 
