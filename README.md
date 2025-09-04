@@ -6,19 +6,15 @@
 Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 
 ## TODO
-- Full draft of introduction, with reference - Leigha
-- Full draft of Methods with references - Chris
-- VBF graph with new 'simple prompt' simulations - Alex
+- Finish writing methods
+- Alex remove duplicate rep from the YPR. 
+- Edit methods and add references 
 - Tokens vs accuracy summary graph. Graph showing one facet for each case-study. Each facet has an x-y with points. x is cost, y is the overall accuracy, colours are the two models. So would need to pull all data in together, then just average accuracy scores across all the criteria, so we get one accuracy score per run - ????
 - Write results - Chris with help?
 - Write discussion (to do later)
 - Add a barramundi SP model with enironmental variation? 
 
-
-- Alex doing YPR and VBF graphs, might need help
-- Graph of the tokens and accuracy as a summary? 
-- Leigha working on the intro
-- CB to write the methods. 
+- Leigha to make a compilation of example graphs showing the 'ideal' ones I made versus samples of good and bad results from the AI. Don't make the graph too busy, we just want to illustrate the variety of outcomes. 
 
 YPR data and plotting code currently on the onedrive. 
 
