@@ -7,7 +7,7 @@ Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 
 ## TODO
 - Finish writing methods
-- Alex remove duplicate rep from the YPR. 
+- re-run YPR with 15 removed. 
 - Edit methods and add references 
 - Tokens vs accuracy summary graph. Graph showing one facet for each case-study. Each facet has an x-y with points. x is cost, y is the overall accuracy, colours are the two models. So would need to pull all data in together, then just average accuracy scores across all the criteria, so we get one accuracy score per run - ????
 - Write results - Chris with help?
