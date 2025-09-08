@@ -190,9 +190,9 @@ Show grouped results here on cost and overal accuracy across all case-studies? F
 
 ## 4. Discussion
 
-When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an element of repeatability, in that results are reasonably consistent.
-
-Our analysis indicates that providing detailed prompts does not guarantee accurate outcomes, as performance largely depends on the inherent characteristics of each model. Sonnet model consistently outperform Kimi regardless of prompt specificity. Importantly, all models carry intrinsic error that fisheries modellers must recognise to avoid introducing bias into decison-making processes. Hallucinations by models are errors that fisheries modellers must pay particular attention to. For instance, Kimi exhibited this characteritics in it analysis. Hallucination typically occurs when the model lacks sufficient evidence in its training data to support its response [@chen2025]. This limitation provides insight into the strengths and capabilities of both models when applied to complex tasks in fisheries analysis. 
+When starting out a fisheries modeller won't have fully informed instructions. These take time to write. We have shown that well worded instructions have an element of repeatability, in that results are reasonably consistent. AI agents show varying performance when tasked linguistically with managing a diverse range of fisheries models that vary in complexities and difficulty. 
+  
+Our analysis indicates that providing detailed prompts does not guarantee accurate outcomes, as performance largely depends on the inherent characteristics of each model. Sonnet model consistently outperform Kimi regardless of prompt specificity. Importantly, all models carry intrinsic error that fisheries modellers must recognise to avoid introducing bias into decison-making processes. Hallucinations by models are errors that fisheries modellers must pay particular attention to. For instance, Kimi exhibited this characteritics in it analysis. Hallucination typically occurs when the model lacks sufficient evidence in its training data to support its response [@chen2025]. This limitation provides insight into the strengths and capabilities of both models when applied to complex linguistic task in fisheries analysis. It emphasise the need for continuous improvement and vigorous evaluation of AI agents for reliable and efficient LLM for fisheries.  
 
 Discuss issue with Kimi making up values. can't be trusted.
 
