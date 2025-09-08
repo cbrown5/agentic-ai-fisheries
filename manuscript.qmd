@@ -23,15 +23,15 @@ Journal: Fish and Fisheries
 
 Modern ecological sciences, and particularly fisheries, demand extensive technical expertise and time-consuming computational workflows[@punt2025]. The complexity of modelling can be one impediment to the delivery of timely and well-informed advice to fishery managers [@cotter2004]. For example, stock assessment reports often cite time constraints as a barrier to conducting comprehensive analyses, with professionals struggling to complete thorough sensitivity analyses or explore multiple scenarios [@punt2025]. Fisheries science and ecology more generally relies on a broad variety of quantitative methods, which can be challenging to learn and are underrepresented in formal training programs [@touchon2016]. Moreover, quantitative environmental scientists frequently lack formal training in programming, making the creation and maintenance of computational code difficult [@hampton2017]. Creating and sharing reproducible code that is easily understood and is useable by others is an even greater challenge [@Culina2020]. Thus, the limited number of trained modellers with expertise in the complexities of fisheries science creates a bottleneck for stock assessments and exacerbates challenges associated with data availability [@dichmont2025].
 
-[Leigha can we just broaden above para a bit so it feels relevatn to all ecologists, not just fisheries (but still with fisheries as a prime example)]
+\[Leigha can we just broaden above para a bit so it feels relevatn to all ecologists, not just fisheries (but still with fisheries as a prime example)\]
 
 Large language models (LLMs) and AI agents offer a transformative opportunity to automate complex fisheries modelling workflows [@bistarlli2025]. By separating code creation from model design and data acquisition, these technologies can potentially lower the technical barriers for non-experts [@jansen2025leveraging]. For experts, LLMs are particularly valuable in streamlining routine coding tasks, enhancing efficiency, and reducing errors, thereby freeing time for higher-level model design and scientific reasoning [@Chen2023]. For instance, AI-generated code has been applied in biological pest control distribution modelling [@scheepens2024], and in the autonomous synthesis of insect repellents [@bran2024], reducing development time and errors. However, questions remain regarding the reliability and quality of this AI-generated code [@wills2024]. For example, LLMs can produce fabricated information [@scheepens2024], or produce code that executes but fails to follow best scientific practice for a particular type of computational task [@hocky2022]. Thus, to effectively use LLM for coding, users need to be familiar enough with the programming language to detect anomalies in AI outputs [@cooper2024].
 
 Previous tests of LLMs for statistical analysis have revealed significant challenges for the application of generative AI to statistics [@ellis2023]. While LLMs can generate executable code, a recent study found less than 50% of generated scripts were technically accurate [@jansen2025leveraging]. Notably, code execution rates improved when AI models could self-correct [@zhu2024large]. Key insights have emerged about effective LLM-human interaction: contextual information is crucial for making informed statistical choices; providing reference code and statistical approaches guides AI responses [@zhu2024large]; and one-shot prompting with comprehensive examples often yields more reliable results than multi-turn conversations [@laben2025llms]. Further, agents that self correct mistakes have much higher accuracy than single response chat bots [@jansen2025leveraging]. Users must be skillful in writing effective prompts, which are the instructions or inputs given to the LLM, and evaluating the responses [@lubiana2023]. Prompts are being replaced by  detailed specification sheets of long, precise instruction sets written in plain English [@chen2025]. These specifications can articulate analysis requirements clearly, making them accessible to both expert and novice users.
 
-A growing body of research is exploring the use of LLMs as assistants or chat bots (e.g. ChatGPT or GitHub Copilot) that generate code in response to human prompts [e.g. @Bistarelli]. The human then runs this code, collects and interprets the outputs, and writes the report (Figure 1A). In contrast, recent developments have enabled the creation of AI agents, where an LLM is embedded in a closed-loop system that can autonomously generate, execute and refine computer code, actively manage computation steps, and evaluate results to complete a specified task—with minimal human intervention (Figure 1B) [@ferrag2025]. 
+A growing body of research is exploring the use of LLMs as assistants or chat bots (e.g. ChatGPT or GitHub Copilot) that generate code in response to human prompts [e.g. @Bistarelli]. The human then runs this code, collects and interprets the outputs, and writes the report (Figure 1A). In contrast, recent developments have enabled the creation of AI agents, where an LLM is embedded in a closed-loop system that can autonomously generate, execute and refine computer code, actively manage computation steps, and evaluate results to complete a specified task—with minimal human intervention (Figure 1B) [@ferrag2025].
 
-[Can we merge above paras? Doesn't quite work as is. Not sure how to fix  though. We have two ideas to cover: quality of prompting, using agents with spec sheets]
+\[Can we merge above paras? Doesn't quite work as is. Not sure how to fix though. We have two ideas to cover: quality of prompting, using agents with spec sheets\]
 
 Here we test whether AI agents can transform specification sheets into reliable fisheries models by examining three increasingly complex tasks: (1) von Bertalanffy growth curve fitting, (2) generalized linear modeling of fish-habitat relationships, and (3) yield per recruit analysis. We conduct detailed analysis of the generated responses to better understand the strengths and limitations of the AI. Evaluations of agent-LLM pairs in other fields suggest we should be successful. However, fisheries science may present a special challenge to agents, because of the relatively limited amount of training data available to LLMs relative to topics such as game programming. We are also testing the agents in the R program, which is popular with environmental statisticians, but for which there is much more limited training code available than common languages like C.
 
@@ -73,8 +73,9 @@ We followed similar guidelines for creating specification sheets for each of the
 
 The specification sheets drew on fisheries and ecology text books [@haddon; @ogle2018; @zuur2009mixed] to ensure statistical and methodological accuracy. By providing all instructions upfront, we followed recent recommendations that AI systems perform more reliably with comprehensive initial guidance [@laban2025llms].
 
-UP TO HERE
-Explain a bit about how we fine-tuned these. 
+UP TO HERE Explain a bit about how we fine-tuned these.
+
+The full spec sheets are provided in the supplemental material because they are too long to provide here.
 
 #### Von Bertalanffy Growth Model Test Case
 
@@ -88,7 +89,16 @@ We instructed the replicate agents to complete a csv file of parameter values. T
 
 ### Generalized linear model of fish habitat
 
-Our second task was to test the relationship between abundance of a juvenile fish and cover of two different types of coral. UP TO HERE\>
+Our second task was to test the relationship between abundance of a juvenile *Bolbometopon muricatum* (a large coral reef fish) and cover of two different types of coral. We used data from an existing study that found coral loss was impacting juveniles of a threatened fish species [@hamilton2017]. The study design included 49 surveys of coral reefs in the Kia region of the Solomon Islands. At each site juvenile were counted by divers on five by 50m long transects. At the same transects benthic cover (percent) of different habitat types was also recorded using the point intersect transect method. For this analysis transects were aggregated to produce one value per site. We summed the fish counts. We took averages over the transects for two benthic habitat types: branching coral and soft coral.
+
+We asked the AI agents to answer four questions:
+
+1.  Does fish abundance depend on branching coral cover?
+2.  What is the direction and strength of the relationship between fish abundance and branching coral cover?
+3.  Does fish abundance depend on soft coral cover?
+4.  What is the direction and strength of the relationship between fish abundance and branching coral cover?
+
+UP TO HERE
 
 Designed to test the limits, included some 'easy asks' as well as more difficult challenges (confounded variables).
 
@@ -163,6 +173,7 @@ Neither the Kimi or the Sonnet LLM performed well on the 'bonus points' tasks: a
 **Figure 3** Results for the GLM case-study. (a) Mean accuracy for the two LLMs and each criteria from the rubric. (b) Summary of mean accuracy, aptitude and reliability for the two LLMs by criteria types.
 
 ### YPR
+
 The Sonnet LLM demonstrated moderate performance on the yield per recruit (YPR) analysis. Sonnet consistently completed the assigned tasks, generating executable code, producing plots, and populating parameter tables as specified. In contrast, the Kimi LLM was less reliable, frequently failing to complete the workflow. Kimi often produced code that contained errors or was not executed, resulting in incomplete outputs.
 
 Sonnet generally produced accurate results for most parameters. However, a recurring issue was the incorrect application of fishing and natural mortality rates, particularly the misallocation of mortality to the first age class despite explicit instructions to exclude it. This error substantially affected the estimation of maximum yield (Ymax), leading to lower accuracy for this parameter. Kimi's performance was more variable, with occasional high aptitude scores but frequent failures to complete the analysis or generate valid outputs.
@@ -171,7 +182,7 @@ Overall, Sonnet provided robust and reproducible results for most aspects of the
 
 ![](Shared/Outputs/figure-4-YPR-quant_and_qual.png)
 
-**Figure 4** Results for the yield-per-recruit case-study. (a) Mean accuracy for the two LLMs for criteria related to technical implementation of the code, (b) mean accuracy for criteria related to the quantitative results. 
+**Figure 4** Results for the yield-per-recruit case-study. (a) Mean accuracy for the two LLMs for criteria related to technical implementation of the code, (b) mean accuracy for criteria related to the quantitative results.
 
 ### Cost and accuracy
 
@@ -185,9 +196,7 @@ Our analysis indicates that providing detailed prompts does not guarantee accura
 
 Discuss issue with Kimi making up values. can't be trusted.
 
-Vibe coding, not for high stakes situations. Ok to try somethign out or for learning. If using agents you should check and verify all code. 
-Often need to iterate a lot on the prompts to develop a good prompt.
-Also creating multiple versions and implementations of a project to compare and get ideas.  
+Vibe coding, not for high stakes situations. Ok to try somethign out or for learning. If using agents you should check and verify all code. Often need to iterate a lot on the prompts to develop a good prompt. Also creating multiple versions and implementations of a project to compare and get ideas.
 
 Overall we found Sonnet to be a reliable and accurate implementer of the statistical task and that it could consistently follow instructions. However, it could not be relied upon as an expert statistician - it did not consistently provide best-practice verification plots and it never suggested we check for confounding. Therefore, it is a powerful tool if used by an expert, or given clear steps on the workflow required for a statistical valid analysis.
 
