@@ -202,7 +202,7 @@ Vibe coding, not for high stakes situations. Ok to try somethign out or for lear
 
 Overall we found Sonnet to be a reliable and accurate implementer of the statistical task and that it could consistently follow instructions. However, it could not be relied upon as an expert statistician - it did not consistently provide best-practice verification plots and it never suggested we check for confounding. Therefore, it is a powerful tool if used by an expert, or given clear steps on the workflow required for a statistical valid analysis.
 
-A key contribution of this study is the evaluation of AI agents' performance across a comprehensive range of stock assessment, progressing from simple to more complex fisheries frameworks. This approach provides valuable insight into how LLMs handle increasing model complexity. The findings study show promise for enhancing fisheries data analysis - particularly stock assessments - with practical applications in both data poor and data rich contexts. Ultimately, this supports more informed and sustainable decision making in fisheries management. 
+A key contribution of this study is the evaluation of AI agents' performance across a comprehensive range of stock assessment, progressing from simple to more complex fisheries frameworks. This approach provides valuable insight into how LLMs handle increasing model complexity. The findings show promise for enhancing fisheries data analysis - particularly stock assessments - with practical applications in both data poor and data rich contexts. Ultimately, this supports more informed and sustainable decision making in fisheries management. 
 
 
 ## 5. Conclusion
