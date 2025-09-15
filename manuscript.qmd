@@ -98,11 +98,11 @@ Our simplest test for the agents was to fit a von Bertalanffy growth model to so
 
 We simulated a single size-at-age dataset with known growth parameters based on *Bolbometopon muricatum* [@taylor2018parrotfish]. The AI agents were tasked with: Estimating VB growth function parameters, calculating confidence intervals via bootstrapping, predicting fish size at a specific age (5 years) and generating 95% confidence intervals for predictions of size.
 
-The specification sheet had detailed instructions for this task, including instructions for using the `nls()` function to fit the von Bertalanffy, the growth model equation and to use the `boot` package for bootstrapping (supplementary material XXX, [@ogle2018]).
+The specification sheet had detailed instructions for this task, including instructions for using the `nls()` function to fit the von Bertalanffy, the growth model equation and to use the `boot` package for bootstrapping (supplementary material XXX, [@ogle2018]). We also tested a second smple specification sheet, which we tested with Sonnet because of its near 100% accuracy on all tasks. This second sheet did not include any equations or recommendations for R functions. 
 
 We instructed the replicate agents to complete a csv file of parameter values. The agent was given an empty csv file that had only headings, such that it provided results to us in a standardized way. We then scored the responses for accuracy on each parameter and confidence interval. Each replicate and parameter estimate was scored a `1` if it was within 5% of our our estimated value.
 
-### Generalized linear model of fish habitat
+#### Generalized linear model of fish habitat
 
 Our second task was to test the relationship between abundance of a juvenile *Bolbometopon muricatum* (a large coral reef fish) and cover of two different types of coral. We used data from an existing study that found coral loss was impacting juveniles of a threatened fish species [@hamilton2017]. Note that past studies on this data used different methods, so the LLMs could not been trained on this exact analysis for this exact data. Further, conversations with the LLMs used here suggested they had no knowledge of the @hamilton2017 study specifically. 
 
@@ -126,17 +126,25 @@ We also included two criteria for 'bonus points'. The first was for whether each
 
 There were many replicates where the agents wrote the code but did not execute the code to complete the figures and render the report as a document from the source code (rmarkdown or Rmd format). Therefore, we used this order of priority for awarding marks: We used the written reports as the primary source of information. If an Rmd file was created, but not rendered, we manually rendered it. If the Rmd did not render due to an error we read the  the Rmd file. If there was no Rmd file, or the Rmd file was missing key sections, we looked to see if there were saved figures and at the code. 
 
-### Yield per recruit analysis
+#### Yield per recruit analysis
 
-Used parameter for *Bolbometopon muricatum* [@taylor2018parrotfish]. Based code on @haddon
+The yield per recruit (YPR) analysis was our most complex fisheries modelling task, designed to test the agents' ability to integrate multiple biological parameters and population models. We tasked the AI agents with performing a YPR analysis for *Bolbometopon muricatum* (bumphead parrotfish) to evaluate the effects of different size limits on fishery yield [@taylor2018parrotfish; @haddon].
 
+The agents were required to calculate YPR curves for four management scenarios: a baseline with no size restrictions and three size limit scenarios (400 mm, 500 mm, and 600 mm minimum length). For each scenario, the agents needed to determine three critical fisheries reference points: Fmax (fishing mortality producing maximum yield), Ymax (maximum yield per recruit), and F01 (the more conservative reference point where the yield curve slope equals 10% of the slope at the origin).
 
+The specification sheet provided the biological parameters including von Bertalanffy growth parameters (Linf = 1070 mm, K = 0.15 per year, t0 = -0.074 years), natural mortality (M = 0.169 per year), length-weight relationship coefficients (a = 1.168 × 10^(-6), b = 3.409), and selectivity parameters (delta = 0.001). Maximum age was set at 29 years with initial recruitment of 1000 individuals.
+
+The agents were instructed to implement a multi-step analytical workflow: (1) model growth using the von Bertalanffy equation, (2) convert length-at-age to weight-at-age using allometric relationships, (3) calculate age at 50% selectivity (A50) for each size limit using the inverse von Bertalanffy equation, (4) model fishing selectivity using logistic functions, (5) apply population dynamics using the Baranov catch equation incorporating both fishing and natural mortality, (6) calculate yield per recruit across a range of fishing mortalities, and (7) estimate reference points from the resulting yield curves.
+
+The specification sheet included all necessary equations formatted as R functions: the von Bertalanffy growth equation, its inverse form for calculating age at length, length-weight conversion, logistic selectivity functions, and the Baranov catch equation for calculating catch given mortality rates. Agents were explicitly instructed to exclude mortality from the first age class and to use steep selectivity curves (small delta values) for size limit scenarios.
+
+Expected deliverables included a completed CSV file containing all calculated reference points and yield curve plots comparing all four management scenarios. 
 
 ## 3. Results
 
 ### VBF
 
-The Sonnet LLM with the full spec completed the von Bertlanaffy task with perfect accuracy across all 10 replicates (fig. 2). The Kimi LLM estimated most parameters more than 80% accurate. However, we note that Kimi's output needed some cleaning before we could produce summary results. In particular, the LLM used names for the 'length at age 5' parameter that were inconsistent with the convention we proposed in the spec.
+The the Sonnet LLM with the full specification completed the von Bertlanaffy task with perfect accuracy across all 10 replicates (fig. 2). The Kimi LLM estimated most parameters with more than 80% accurate. However, we note that Kimi's output needed some cleaning before we could produce summary results. In particular, the LLM used names for the 'length at age 5' parameter that were inconsistent with the convention we proposed in the spec.
 
 The chat logs revealed that in two replicates Kimi made simple syntax errors in the R code, resulting in a script that did not complete the task error free. It thus manually entered parameter values into the parameter table, putting those values in the wrong positions.
 
