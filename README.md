@@ -8,7 +8,6 @@ Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
 ## TODO
 - re-run YPR with 15 removed. 
 - add missing references
-- Write discussion 
 - Add a barramundi SP model with enironmental variation? 
 
 - Leigha to make a compilation of example graphs showing the 'ideal' ones I made versus samples of good and bad results from the AI. Don't make the graph too busy, we just want to illustrate the variety of outcomes. 
