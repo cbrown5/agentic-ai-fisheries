@@ -1,23 +1,29 @@
 ---
-title: "Manuscript Outline"
-author: "Leigha Aitken"
-date: "2025-07-30"
-output: html_document
+title: "Automating ecological and fisheries modelling with agentic AI"
+editor: source
+format: 
+    docx:
+        reference-doc: template.docx
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+### Authors 
 
-# Automating fisheries modelling with agentic AI
-
--   ***A short informative title containing the major key words, with two alternatives. The title should not contain abbreviations;*** **PLUS**
--   ***A short running title of less than 40 characters***
-
-Christopher J. Brown\*^a^, Richard Takyi^a^, Alexandre Tisseaux^a^, Leigha R. Aitken^a^
+Christopher J. Brown\*^a^, Leigha R. Aitken^a^, Richard Takyi^a^, Alexandre Tisseaux^a^
 
 \*Corresponding author: c.j.brown\@utas.edu.au
 
 ^a^Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, Tasmania
 
-## 
+### Running title 
+Automating fisheries modelling with agentic AI
+
+## Acknowledgements
+
+CJB was supported by a Future Fellowship (FT210100792) from the Australian Research Council. We'd like to thank for S. Spillias for his insights on an earlier version. 
+
+## Data availability
+
+Code is available at: https://github.com/cbrown5/agentic-ai-fisheries
+
+Data including complete agent transcripts and results of the evaluations are available at: https://github.com/cbrown5/agentic-ai-results
+

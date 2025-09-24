@@ -3,45 +3,13 @@
 
 # Automating fisheries modelling with agentic AI
 
-Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken....
+Christopher J. Brown, Richard Takyi, Alexandre Tisseaux, Leigha Aitken
 
-## TODO
-- re-run YPR with 15 removed. 
-- add missing references
-- Add a barramundi SP model with enironmental variation? 
-
-- Leigha to make a compilation of example graphs showing the 'ideal' ones I made versus samples of good and bad results from the AI. Don't make the graph too busy, we just want to illustrate the variety of outcomes. 
-
-YPR data and plotting code currently on the onedrive. 
+Code to support the study. 
 
 ## Summary
 
-Fisheries modelling can take years of specialist training to learn. Agentic AI systems automate complex computing programming workflows and could lower the technical barrier for fisheries modelling. However, questions remain about the quality of AI derived models. Here we test whether agentic AI can write computer code to complete three common types of fisheries models. We test an agentic AI system (Roo Code) on its ability to complete three fisheries modelling workflows, from data analysis to report write-up: (1) VB parameter estimation, (2) generalized linear modelling of fish-habitat relationships, (3) spawner per recruit analysis. We use replicate prompts and a rubric to evaluate the AI generated reports. We find that... We show how careful prompting of the AI system can deliver high quality reports for fisheries modelling problems. Our results show that agentic AI systems can already complete complex fisheries workflows, particularly if users provide context-rich prompts. We discuss implications for fisheries science including equity of access to technical expertise and the immediate priority of increasing transparency of AI use in fisheries science, potential pitfalls, and the need for a community of practice around prompting.  
-
-## Plan 
-
-Look at three models:
-VB parameter estimation - Testing. 
-I have made a 'simple' and 'full' version. For now using the 'simple' version. Could do another one where I attach FSA instructions to the prompt.
-Then re-run without code 
-GLM of fish habitat. Done, mark Kimi K2 results
-
-VPA/or SPR WRite plan and run 
-
-Full YPR: https://haddonm.github.io/URMQMF/simple-population-models.html#simple-yield-per-recruit
-
-
-## Workflow for the agent
-
-- Copy files in the test case to a separate agentic AI project directory (we need to keep them quarantined from the main project)
-- Check Roo code autoapprove is on with right approvals
-- Pick model and set to 'code' mode. 
-- Run the test case
-- Save the chat log
-- Record tokens in, tokens out and cost.
-- Mark model results against rubric (if using) or run analysis scripts to evaluate results. 
-
-Note that the agentic AI runs are kept in a separate project directory to the main project. Results tables are then copied over to this project directory for analysis. 
+Fisheries modelling can take years of specialist training to learn, and the availability of suitably skilled modellers is one of the bottlenecks for delivering science that can inform management. Agentic AI systems automate complex computing programming workflows and they will increasingly be used to accelerate the delivery of fisheries modelling for management. However, questions remain about the quality of results from AI agents, because they can create syntactically accurate but logically flawed code, and they do not response consistently if the same question is asked repeatedly. Here, we tested whether a general-purpose agentic AI (Roo Code) can write computer code and interpret results to complete three common ecological and fisheries modelling workflows: (1) fitting a von-Bertalanffy growth curve to data, (2) writing code interpreting results of a generalized linear model relating fish abundance to habitat, and (3) completing a yield per recruit analysis. We used replicate prompts and a structured evaluation rubric to ask if the AI results were accurate and if responses were consistent. The agent successfully and accurately completed all three tasks in some replicates; however, there was variability in the outcomes across replicated agents. Of the two large language models we tested, Claude Sonnet 4.0 performed accurately and consistently across all three tasks. Our findings show that general purpose agentic AI systems can accurately complete ecological and fisheries modelling, but that further work is needed to ensure consistency of results across different replicates. We further show how to design prompts and workflows to achieve more consistent and accurate results and discuss the importance of ensuring human oversight for credibility of modelling that is used in management.
 
 # Directory Overview
 
@@ -49,20 +17,17 @@ Below is an overview of the main sections and folders in this repository. Each s
 
 ## Top-level Files
 
-
 - **README.md**  
 	This file. Project overview and documentation.
 
 - **manuscript.qmd**  
-    Main manuscript file for the project write-up, including analysis
+    Main manuscript file for the project write-up, including analysis.
 
-- **hints-tips-spec-writing.qmd, Manuscript-outline.qmd,  Title-page.qmd**  
-	Drafts, outlines, and main manuscript files for the project write-up.
+- **Title-page.qmd**  
+	Title page for the manuscript.
 
 - **references.bib**  
 	Bibliography and references for the manuscript.
-- **test-case-notes.qmd**  
-	Notes and observations from running test cases.
 
 ## Private/
 Contains any private or sensitive files not intended for sharing.
@@ -85,38 +50,64 @@ Expert validated code and results for GLM models. Includes:
 ### Scripts/vbf-test-case/
 Test case for von Bertalanffy (VBF) parameter estimation. Includes example data, prompts, and outputs.
 
+### Scripts/vbf-test-case-simple/
+Simplified version of the von Bertalanffy test case with streamlined data and prompts.
+
 ### Scripts/vbf-validation-case/
-Validation scripts and outputs for VBF models.
+Validation scripts and outputs for VBF models. Includes:
+- `fit-vbf-FSA.R`, `fit-vbf.R`: R scripts for fitting VBF models using different approaches.
+- `parameter-validation.csv`: Validation results for VBF parameter estimates.
+
+### Scripts/ypr-test-case/
+Test case for Yield Per Recruit (YPR) analysis. Includes:
+- `initial-prompt.md`, `ypr-readme.md`: Documentation and prompts for the test case.
+- `ypr_reference_points.csv`: Reference point data for YPR analysis.
+- `data/`, `outputs/plots/`, `scripts/`: Input data, output plots, and analysis scripts.
+
+### Scripts/ypr-validation-case/
+Expert validated code and results for YPR models. Includes:
+- `Version2-01_ypr_parameters_functions.R`, `Version2-02_ypr_analysis.R`: R scripts for YPR analysis.
+- `ypr-functions.R`, `ypr-validation.R`: Additional validation and function scripts.
+- `ypr_reference_points.csv`: Reference point validation data.
 
 ### Scripts/results/
 Analyse results of Agent runs, e.g., `analyse-glm.R`.
 
 ## Shared/
-Shared resources and data for the project. Subfolders include:
+Shared resources and data for the project. Contains:
 
 ### Shared/Data/
-Datasets and CSV files used across test cases. May include old versions in `OLD/`.
-
-#### glm-test-case/
-
-`glm-class-levels.csv`: Questions for the rubric along with levels of answers. This is used to evaluate the AI's performance on the GLM test case.
-
-`glm-question-types.csv`: Questions for the rubric along with types of answers split into three categories for summarizing. 
-
-`glm-test-case-results.csv`: Results for all agent runs, marked against the rubric. 
-
-### Shared/Manuscripts/
-Shared manuscript drafts and related files. May include archived versions in `OLD/`.
-
-
-
-### Shared/Materials/
-Shared materials and outputs, with possible archived content in `OLD/`.
+Datasets and CSV files used across test cases. Includes:
+- `glm-class-levels.csv`: Questions for the rubric along with levels of answers. Used to evaluate AI performance on GLM test cases.
+- `glm-question-types.csv`: Questions for the rubric along with types of answers split into three categories for summarizing.
+- `glm-test-case-results.csv`: Results for all agent runs, marked against the rubric.
+- `glm-test-case/`: Additional GLM test case data files.
+- `OLD/`: Archived older versions of data files.
 
 ### Shared/Outputs/
-General outputs from analyses, with older versions in `OLD/`.
+Analysis outputs and figures. Includes:
+- `fig2-vbf_Claude-Kimi-simple.png`, `fig2-vbf.png`: von Bertalanffy growth curve comparison figures.
+- `figure-3.png`, `figure-4_ypr.png`, `figure-4-YPR-quant_and_qual.png`: Analysis result figures.
+- `figure-5-cost-accuracy.png`: Cost-accuracy trade-off analysis figure.
+- `glm_summary_heatmap.png`: GLM results summary heatmap.
+- `yield_per_recruit-validation.png`: YPR validation results figure.
+- `OLD/`: Archived older versions of output files.
 
----
-You can expand each section above to provide more detail or add explanations for new folders as the project evolves.
+### Figure Files (Top-level in Shared/)
+- `Figure-comparison-png.png`: Comparison figure in PNG format.
+- `Figure1- CB.pdf`, `Figure1- CB.pptx`, `Figure1.png`: Main manuscript Figure 1 in various formats.
 
 
+## Workflow for running the agent
+
+- Copy files in the test case to a separate project directory (we need to keep them quarantined from the main project to prevent context being shared)
+- Open VScode and Roo Code
+- Check Roo code autoapprove is on with right approvals as described in the study
+- Pick model and set to 'code' mode. 
+- Paste the 'initial-prompt' into the chat for Roo Code. 
+- Run the test case
+- Save the chat log
+- Record tokens in, tokens out and cost.
+- Mark model results against rubric (if using) or run analysis scripts to evaluate results. 
+
+Note that the agentic AI runs are kept in a separate project directory to the main project. Results tables are then copied over to this project directory for analysis. 
