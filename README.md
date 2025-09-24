@@ -70,19 +70,9 @@ Expert validated code and results for YPR models. Includes:
 - `ypr-functions.R`, `ypr-validation.R`: Additional validation and function scripts.
 - `ypr_reference_points.csv`: Reference point validation data.
 
-### Scripts/results/
-Analyse results of Agent runs, e.g., `analyse-glm.R`.
 
 ## Shared/
 Shared resources and data for the project. Contains:
-
-### Shared/Data/
-Datasets and CSV files used across test cases. Includes:
-- `glm-class-levels.csv`: Questions for the rubric along with levels of answers. Used to evaluate AI performance on GLM test cases.
-- `glm-question-types.csv`: Questions for the rubric along with types of answers split into three categories for summarizing.
-- `glm-test-case-results.csv`: Results for all agent runs, marked against the rubric.
-- `glm-test-case/`: Additional GLM test case data files.
-- `OLD/`: Archived older versions of data files.
 
 ### Shared/Outputs/
 Analysis outputs and figures. Includes:
